@@ -1,0 +1,16 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+const source = await readFile(new URL("../dist/server/index.js", import.meta.url), "utf8");
+const manifest = JSON.parse(await readFile(new URL("../dist/.openai/hosting.json", import.meta.url), "utf8"));
+const { default: worker } = await import("data:text/javascript;base64," + Buffer.from(source).toString("base64"));
+assert.equal(typeof worker.fetch, "function");
+assert.equal(manifest.r2, "BUCKET");
+assert.ok(manifest.project_id && !manifest.static);
+const emptyBucket = { list: async () => ({ objects: [], truncated: false }) };
+const page = await worker.fetch(new Request("https://portfolio.example.test/"), { BUCKET: emptyBucket });
+assert.equal(page.status, 200);
+const html = await page.text();
+assert.ok(html.includes("Anton Sheludko") && html.includes("https://eaglish.ru/"));
+assert.ok(!html.includes("Temporary local QA check") && !html.includes("[Your Full Name]"));
+assert.ok(html.includes("Achievements and certificates will be added here."));
+console.log("Deployable Worker validated; personal content is present and achievements start empty.");

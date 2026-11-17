@@ -1,0 +1,10 @@
+{
+  "name": "anton-student-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test tests/server.test.mjs"
+  }
+}

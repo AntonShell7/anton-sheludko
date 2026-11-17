@@ -1,102 +1,88 @@
-# Personal student portfolio
+# Anton Sheludko — личное портфолио
 
-A small, responsive portfolio for university applications. Built with semantic HTML, CSS, and a little JavaScript. No framework, package installation, build step, backend, database, analytics, or external fonts.
+Готовый сайт на английском языке с отдельной панелью управления достижениями. Основная страница остаётся на HTML/CSS/JavaScript; небольшой сервер сохраняет записи и файлы. Сторонние пакеты не нужны.
 
-## Run locally
+## Сайт и админка
 
-Open a terminal in this `student-portfolio` folder and run:
+- [Портфолио](https://student-portfolio-k7m2p.goodlycow1.chatgpt.site/)
+- [Панель достижений](https://student-portfolio-k7m2p.goodlycow1.chatgpt.site/admin)
+
+Сайт сохраняет прежний приватный режим доступа. Админка проверяет вход через ChatGPT и разрешает управление только владельцу. Отдельный пароль не нужен.
+
+### Как добавить достижение
+
+1. Открой `/admin` под своим аккаунтом ChatGPT.
+2. Заполни название, год и категорию. Организация, описание и ссылка на подтверждение необязательны.
+3. При желании прикрепи PDF, JPG, PNG или WebP размером до 10 МБ.
+4. Оставь **Publish on my portfolio** выключенным, чтобы сохранить личный черновик. Включи его, когда запись готова к появлению на сайте.
+5. Нажми **Save achievement**. Повторная сборка или публикация сайта не требуется.
+
+**Edit** открывает запись для редактирования. Можно заменить вложение, убрать его или снова скрыть запись, сняв отметку публикации. **Delete** удаляет запись и её вложение после подтверждения. Публичная часть показывает только опубликованные достижения, сначала самые новые.
+
+Записи и вложения сохраняются в серверном хранилище R2 и доступны после перезагрузки и с другого устройства. Черновики и их файлы доступны только владельцу. Сейчас коллекция пуста; вымышленных наград и тестовых записей в опубликованной версии нет.
+
+## Что заполнено
+
+Имя, город, лицей, 11 класс, ожидаемый выпуск в июне 2027 года, Python/C++, интересы, текущая учёба, самостоятельная жизнь с 17 лет, хоккей, GitHub и email внесены по ответам Антона.
+
+В проектах оставлен только Eaglish. Уровни английского описаны как личная оценка; отзывы друзей не добавлены без точных цитат. Неуказанные стажировки, лагеря, награды, LinkedIn и резюме не выдуманы.
+
+Стек Eaglish проверен по [package.json](https://github.com/AntonShell7/eaglish/blob/main/package.json): React, TypeScript, Vite, Tailwind CSS, Supabase. Функции проекта сверены с [README](https://github.com/AntonShell7/eaglish/blob/main/README.md) и исходным кодом. Название спортивного клуба сверено с [официальным сайтом ИТМО](https://kronbars.itmo.ru/); сведения о личном участии предоставлены Антоном.
+
+## Запуск на компьютере
+
+Требуется Node.js 20 или новее. В папке `student-portfolio` выполни:
 
 ```sh
-python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
+node scripts/build.mjs
+node scripts/dev.mjs
 ```
 
-Visit [the local website](http://127.0.0.1:8000). Stop the server with `Ctrl+C`.
+Открой [локальный сайт](http://127.0.0.1:8000/) или [локальную админку](http://127.0.0.1:8000/admin). Сервер слушает только `127.0.0.1`. В локальном режиме администратор включён автоматически для проверки интерфейса. Этот механизм находится только в скрипте разработки и не включается в опубликованный Worker.
 
-You can also open `dist/index.html` directly in a browser. A local server is recommended because it behaves more like a deployed site. Refresh the browser after editing; there is no build process.
+Локальные записи хранятся в `work/local-data` и не попадают на опубликованный сайт. Можно задать другое расположение переменной `PORTFOLIO_DATA_DIR`. Для проверки без локального входа задай `PORTFOLIO_LOCAL_ADMIN=0`. Остановка сервера — `Ctrl+C`.
 
-## Files
+После правок снова запусти сборку, перезапусти локальный сервер и обнови страницу.
+
+## Где менять содержимое
 
 ```text
-student-portfolio/
-├── dist/
-│   ├── index.html       All personal details, text, project cards, and links
-│   ├── styles.css      Colors, typography, spacing, and responsive layouts
-│   ├── script.js       Mobile menu, link activation, current section, and year
-│   ├── favicon.svg     Small browser-tab icon
-│   └── .nojekyll       Lets GitHub Pages serve these files directly
-├── vercel.json         Optional Vercel deployment settings
-├── .openai/hosting.json  Private Sites preview identity and static directory
-└── README.md
+public/
+  index.html        Биография, школа, проект, контакты
+  styles.css        Дизайн портфолио
+  script.js         Навигация и ссылка владельца на админку
+  admin.html        Форма достижений
+  admin.css         Дизайн панели
+  admin.js          Сохранение, редактирование, публикация и удаление
+  favicon.svg       Иконка вкладки
+worker/
+  index.js          API, проверка владельца, работа с файлами и записями
+scripts/
+  build.mjs         Сборка всех ресурсов в один Worker
+  dev.mjs           Локальный сервер
+  local-bucket.mjs  Локальное хранилище для разработки и тестов
+  validate.mjs      Проверка собранного артефакта
+  
+tests/server.test.mjs  Проверки API и доступа
+.openai/hosting.json   Идентификатор существующего сайта и привязка R2
 ```
 
-`dist` is both the editable source and the folder to publish. Despite the name, nothing generates or overwrites it.
+`worker/assets.js` и `dist/` создаются при сборке. Их не нужно редактировать вручную. В `public/index.html` находится вся статическая персональная информация; достижения поступают из серверного хранилища и вставляются в HTML при открытии страницы.
 
-## Make it yours
+## Публикация
 
-Edit `dist/index.html`. Search for `PERSONALIZE`, `LINKS`, `PROJECTS`, `ACHIEVEMENTS`, and `EXPERIENCE` to find the relevant comments.
+Полная версия публикуется на существующий Sites-проект. `.openai/hosting.json` сохраняет его `project_id`, задаёт `r2: "BUCKET"` и не содержит `static`. Сборка создаёт `dist/server/index.js` с `default.fetch` и копию манифеста в `dist/.openai/hosting.json`. В серверных переменных Sites настроен `PORTFOLIO_ADMIN_EMAIL`; проверка владельца выполняется на сервере при каждом обращении к админке.
 
-1. Replace `[Your Full Name]`, `[Your Name]`, `[School Name]`, and the other bracketed details. Update the page title, social-sharing title, description, wordmark accessibility label, and footer too.
-2. Rewrite the introduction in your own voice. Keep only interests that describe you.
-3. Replace the three **example ideas** with your actual projects. Add accurate technologies, your contribution, and the current status. An unfinished project can say “In progress” or “Planned.” Remove cards you do not need.
-4. Add only real awards, certificates, schools, programs, and activities. Delete unused rows rather than filling them with invented achievements.
-5. Add your contact and project destinations as described below.
-6. Once the content is real, remove the project example note and the footer’s `draft-note` paragraph. Check for remaining square brackets before sending the site to universities.
+Хранилище R2 создаётся и подключается платформой при публикации. Переиздание кода не очищает достижения или вложения. Не меняй `project_id`, если хочешь обновить тот же сайт и сохранить данные.
 
-### Add links
+Поскольку теперь есть настоящая админка с сохранением файлов, полной версии нужен сервер. GitHub Pages может разместить только статическое представление без этой админки. Для переноса полной версии на Vercel потребуется адаптировать сервер, вход и хранилище. Старые настройки публикации статической папки `dist` удалены, чтобы не развернуть неполную версию по ошибке.
 
-Optional anchors intentionally have no `href` until a real destination is supplied. Unset links are readable text, not clickable dead ends. Navigation links work immediately.
+## Проверки
 
-For GitHub, LinkedIn, or a project demo, replace the relevant `data-href` value with an absolute `https://` URL:
-
-```html
-<a class="quiet-link optional-link" data-href="https://github.com/YOUR_USERNAME">
-  GitHub <span class="link-state">not added</span>
-</a>
+```sh
+node scripts/build.mjs
+node --test tests/server.test.mjs
+node scripts/validate.mjs
 ```
 
-The script makes it clickable, replaces “not added” with an arrow, and opens external links in a new tab. Replace every occurrence of `[GitHub URL]` if you want the same profile in both the hero and contact section. Project cards have their own destinations.
-
-For email, replace each `data-email="[Email Address]"` with your address. In the contact section, also replace the visible `[Email Address]` text. The script creates a normal `mailto:` link; there is no contact form or server to configure.
-
-For a résumé, place the PDF at `dist/resume.pdf` and change the résumé anchor to `data-href="./resume.pdf"`. It becomes visible automatically. An absolute HTTPS URL ending in `.pdf` also works. No résumé is included because no real personal information was supplied.
-
-LinkedIn is optional and stays hidden until its `data-href` contains a real URL. You can delete that anchor if you do not use LinkedIn.
-
-All main content and section navigation remain available with JavaScript disabled. Optional contact links are activated by JavaScript.
-
-### Change the design
-
-The color variables are at the top of `dist/styles.css`. The content width is set by `.container`. Mobile layouts begin at `640px`, and tablet adjustments begin at `800px`. The design uses the visitor’s system font and respects reduced-motion preferences.
-
-## Deploy to Vercel
-
-1. Put this `student-portfolio` folder in a Git repository and import that repository into Vercel.
-2. Use this folder as the project’s **Root Directory**. If it is the repository root, leave the default root setting.
-3. Use **Other** as the framework preset, skip installation and building, and set the output directory to `dist`. The included `vercel.json` supplies these settings.
-4. Deploy and visit the URL returned by Vercel.
-
-Static HTML/CSS/JavaScript can be served without a build step. See [Vercel’s build configuration documentation](https://vercel.com/docs/builds/configure-a-build).
-
-## Deploy to GitHub Pages
-
-For the simplest setup, copy the **contents** of `dist` into the root of a separate GitHub repository, including `.nojekyll`. `index.html` should be at the repository root, not inside another `dist` folder.
-
-In **Settings → Pages**, choose **Deploy from a branch**, select your branch (usually `main`), choose **/(root)**, and save. GitHub will display the website URL after deployment. The relative asset paths also work on repository URLs such as `https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/`.
-
-GitHub’s branch-based publishing supports the repository root or a `/docs` folder. See [GitHub’s publishing-source instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-
-## Check before sharing
-
-- Confirm your name, school, dates, and descriptions are accurate.
-- Replace or remove every placeholder and example project.
-- Open each real project, contact, and PDF link.
-- Check the page on your phone and desktop, including the mobile menu.
-- Check the browser title and description after personalizing.
-
-The original template contains no claims of completed projects, awards, test scores, employment, or technology proficiency. It is ready to personalize, not ready to submit unchanged as an application portfolio.
-
-## Verification performed
-
-The finished template was served locally and inspected in a real browser at widths of 320, 390, 768, and 1280 pixels. No horizontal overflow was found. Section navigation, the project button, the mobile menu, Escape-to-close with focus return, and back-to-top behavior were checked. Navigation highlighting was checked at the page’s top and contact section. JavaScript syntax, internal anchor targets, local asset references, and JSON configuration checks passed; the browser reported no console errors.
-
-Personal URLs, mail delivery, and a résumé download cannot be verified until you add your own destinations and PDF. Vercel and GitHub Pages instructions are included; deployment to those services was not performed.
+Семь серверных тестов проверяют доступ владельца, защиту запросов, черновики, публикацию, сохранность файлов, замену и удаление вложений, экранирование HTML, проверку форматов и размера файлов, обработку ошибок хранилища и ответы на HEAD-запросы. В реальном браузере проверены сохранение черновика с изображением, перезагрузка, редактирование, публикация, отображение записи в портфолио и диалог удаления. Все тестовые данные из локальной коллекции удалены после проверки.
