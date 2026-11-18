@@ -414,21 +414,14 @@ main:focus { outline:none; }
 .about-portrait:after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,rgba(13,23,27,.84),transparent 50%); }
 .about-portrait figcaption { position:absolute; z-index:1; bottom:34px; left:34px; right:24px; }
 .about-portrait .photo-thought { font-size:34px; }
-.chapter-story { margin-top:110px; }
-.chapter-heading { margin:0 auto 44px; text-align:center; }
-.chapter-heading .eyebrow { margin-bottom:22px; }
-.chapter-heading h3 { font-size:clamp(42px,5.2vw,74px); line-height:1.06; }
-.chapter-photo { height:clamp(540px,58vw,760px); background:#314b58; }
-.chapter-photo img { position:absolute; inset:0; width:100%; object-position:50% 51%; filter:brightness(1.14) saturate(1.2) contrast(1.02); }
-.chapter-photo:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#1c354840,transparent 34%,transparent 66%,#1c354840),linear-gradient(0deg,#172b3d38,transparent 38%); }
-.chapter-photo figcaption { position:absolute; inset:0; z-index:1; }
-.chapter-note { position:absolute; color:var(--pink); font:600 clamp(32px,3.8vw,52px)/1.03 var(--handwriting); text-shadow:0 1px 2px #1927318c,0 3px 16px #19273166; }
-.chapter-freedom { top:46px; left:44px; transform:rotate(-7deg); }
-.chapter-possibilities { top:54px; right:44px; transform:rotate(5deg); text-align:right; }
-.chapter-opportunities { left:46px; bottom:50px; transform:rotate(-6deg); }
-.chapter-independent { right:48px; bottom:48px; transform:rotate(5deg); text-align:right; }
-.chapter-story-copy { max-width:760px; margin:38px auto 0; text-align:center; color:var(--muted); font-size:16px; line-height:1.9; }
-.chapter-story-copy .chapter-resolution { max-width:620px; margin:24px auto 0; color:var(--text); font-size:20px; line-height:1.6; letter-spacing:-.02em; }
+.chapter-photo { height:700px; background:#2c4e58; }
+.chapter-photo img { position:absolute; right:0; width:76%; object-position:50% 51%; filter:brightness(1.14) saturate(1.2) contrast(1.02); }
+.chapter-photo:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#2c4e58 24%,rgba(44,78,88,.88) 34%,rgba(44,78,88,.2) 54%,transparent 72%); }
+.chapter-photo figcaption { position:absolute; left:44px; top:50%; transform:translateY(-50%); z-index:1; max-width:47%; }
+.chapter-photo .photo-kicker { color:var(--text); font:600 clamp(30px,3.2vw,44px)/1.15 var(--handwriting); letter-spacing:0; transform:rotate(-5deg); transform-origin:left center; }
+.chapter-photo .photo-thought { font-size:clamp(32px,3.7vw,54px); margin-top:24px; text-shadow:0 2px 18px #203d4740; }
+.chapter-caption-note { display:block; margin-top:22px; color:#eff2eb; font-size:14px; line-height:1.5; }
+.field-note p { font-size:14px; }
 .portrait-photo { aspect-ratio:2/3; }
 .childhood-photo { background:#131719; }
 .childhood-photo img { object-position:center; object-fit:contain; }
@@ -442,10 +435,8 @@ main:focus { outline:none; }
   .split-story { column-gap:40px; }
   .split-story h2 { font-size:43px; }
   .about-portrait { aspect-ratio:3/5; }
-  .chapter-freedom { top:36px; left:32px; }
-  .chapter-possibilities { top:44px; right:32px; }
-  .chapter-opportunities { left:34px; bottom:36px; }
-  .chapter-independent { right:34px; bottom:34px; }
+  .chapter-photo { height:590px; }
+  .chapter-photo figcaption { left:32px; }
 }
 @media(max-width:800px) {
   .hero h1 { font-size:76px; }
@@ -455,8 +446,10 @@ main:focus { outline:none; }
   .about-portrait { aspect-ratio:auto; }
   .about-portrait figcaption { left:24px; bottom:28px; }
   .about-portrait .photo-thought { font-size:28px; }
-  .chapter-story { margin-top:84px; }
-  .chapter-heading { margin-bottom:32px; }
+  .chapter-photo { height:550px; }
+  .chapter-photo img { width:80%; }
+  .chapter-photo figcaption { left:28px; max-width:48%; }
+  .chapter-photo .photo-thought { font-size:36px; }
 }
 @media(max-width:600px) {
   .hero { height:max(880px,100svh); min-height:880px; max-height:none; align-items:flex-end; }
@@ -481,13 +474,11 @@ main:focus { outline:none; }
   .about-portrait .photo-thought { font-size:30px; }
   .chapter-photo { height:auto; aspect-ratio:3/4; }
   .chapter-photo img { width:100%; object-position:center; }
-  .chapter-note { font-size:clamp(27px,7.5vw,38px); }
-  .chapter-freedom { top:24px; left:20px; }
-  .chapter-possibilities { top:78px; right:20px; max-width:52%; }
-  .chapter-opportunities { left:20px; bottom:112px; max-width:42%; }
-  .chapter-independent { right:20px; bottom:26px; max-width:45%; }
-  .chapter-story-copy { margin-top:28px; text-align:left; }
-  .chapter-story-copy .chapter-resolution { margin-top:22px; font-size:19px; }
+  .chapter-photo:after { background:linear-gradient(180deg,rgba(28,59,72,.68),rgba(28,59,72,.16) 36%,transparent 55%); }
+  .chapter-photo figcaption { left:24px; right:20px; top:28px; max-width:none; transform:none; }
+  .chapter-photo .photo-thought { font-size:32px; margin-top:16px; }
+  .chapter-photo .photo-kicker { max-width:none; font-size:32px; }
+  .chapter-caption-note { display:none; }
   .photo-gallery { grid-template-columns:1fr; gap:38px; }
   .gallery-item .portrait-photo,.gallery-item:first-child .portrait-photo { aspect-ratio:2/3; }
   .gallery-item:first-child img { object-position:center; }
@@ -511,12 +502,9 @@ main:focus { outline:none; }
   .hero-content { padding-top:410px; }
   .hero h1 { font-size:55px; }
   .split-story h2 { font-size:38px; }
-  .chapter-heading h3 { font-size:38px; }
-  .chapter-note { font-size:26px; }
-  .chapter-freedom { top:20px; left:16px; }
-  .chapter-possibilities { top:63px; right:16px; }
-  .chapter-opportunities { left:16px; bottom:86px; }
-  .chapter-independent { right:16px; bottom:22px; }
+  .chapter-photo figcaption { top:20px; left:20px; right:16px; }
+  .chapter-photo .photo-kicker { font-size:27px; }
+  .chapter-photo .photo-thought { font-size:26px; margin-top:10px; }
 }
 
 /* Four photographs, one quiet treatment. Every card fits within the viewport. */
