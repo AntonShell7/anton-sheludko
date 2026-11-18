@@ -1,5 +1,6 @@
 // Bundle text and local images into one dependency-free Worker.
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
+import { createHash } from "node:crypto";
 const assetFiles = {
   "/": ["index.html", "text/html; charset=utf-8"],
   "/styles.css": ["styles.css", "text/css; charset=utf-8"],
@@ -20,6 +21,14 @@ const assets = {};
 for (const [route, [file, type, encoding = "utf8"]] of Object.entries(assetFiles)) {
   const contents = await readFile(new URL("../public/" + file, import.meta.url));
   assets[route] = { body: contents.toString(encoding), type, encoding };
+}
+// Give changed styles and scripts a new URL so existing previews load the current version.
+for (const route of ["/", "/admin"]) {
+  assets[route].body = assets[route].body.replace(/(href|src)="(\/[^"?]+\.(?:css|js))"/g, (match, attribute, path) => {
+    if (!assets[path]) return match;
+    const revision = createHash("sha256").update(assets[path].body).digest("hex").slice(0, 12);
+    return `${attribute}="${path}?v=${revision}"`;
+  });
 }
 const manifest = await readFile(new URL("../.openai/hosting.json", import.meta.url), "utf8");
 const config = JSON.parse(manifest);
