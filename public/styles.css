@@ -176,8 +176,8 @@ main:focus { outline:none; }
 .footer-signoff { display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
 .footer-name { display:block; font-family:var(--heading); font-size:clamp(86px,14vw,200px); line-height:.98; letter-spacing:-.055em; text-transform:none; font-weight:600; width:max-content; max-width:100%; }
 /* Use Anton's original pixels: invert the ink and blend the paper into the dark surface. */
-.footer-autograph { flex:0 1 32%; min-width:0; max-width:390px; }
-.footer-autograph img { width:100%; height:auto; aspect-ratio:3/2; filter:grayscale(1) invert(1); mix-blend-mode:screen; }
+.footer-autograph { flex:0 1 32%; min-width:0; max-width:390px; overflow:hidden; }
+.footer-autograph img { width:100%; height:auto; aspect-ratio:3/2; filter:grayscale(1) invert(1); mix-blend-mode:screen; transform:scale(1.25); transform-origin:center; }
 .footer-bottom { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-top:70px; padding-top:27px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); }
 .footer-bottom p { line-height:1.9; }
 .footer-bottom p>span { color:var(--subtle); font-family:var(--body); font-size:12px; letter-spacing:.04em; text-transform:none; }
