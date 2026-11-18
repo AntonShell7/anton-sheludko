@@ -13,8 +13,7 @@ const assetFiles = {
   "/images/project-placeholder.svg": ["images/project-placeholder.svg", "image/svg+xml"],
   "/images/portrait-placeholder.svg": ["images/portrait-placeholder.svg", "image/svg+xml"],
   "/images/ice-placeholder.svg": ["images/ice-placeholder.svg", "image/svg+xml"],
-  "/fonts/inter-regular.ttf": ["fonts/inter-regular.ttf", "font/ttf", "base64"],
-  "/fonts/ibm-plex-mono.ttf": ["fonts/ibm-plex-mono.ttf", "font/ttf", "base64"]
+  "/fonts/inter-variable.woff2": ["fonts/inter-variable.woff2", "font/woff2", "base64"]
 };
 const assets = {};
 for (const [route, [file, type, encoding = "utf8"]] of Object.entries(assetFiles)) {

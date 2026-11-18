@@ -22,10 +22,10 @@ for (const file of ["atmosphere-placeholder.svg", "project-placeholder.svg", "po
   assert.equal(image.headers.get("content-type"), "image/svg+xml");
   assert.deepEqual(Buffer.from(await image.arrayBuffer()), await readFile(new URL("../public/images/" + file, import.meta.url)));
 }
-for (const file of ["inter-regular.ttf", "ibm-plex-mono.ttf"]) {
+for (const file of ["inter-variable.woff2"]) {
   const font = await worker.fetch(new Request("https://portfolio.example.test/fonts/" + file), {});
   assert.equal(font.status, 200);
-  assert.equal(font.headers.get("content-type"), "font/ttf");
+  assert.equal(font.headers.get("content-type"), "font/woff2");
   assert.deepEqual(Buffer.from(await font.arrayBuffer()), await readFile(new URL("../public/fonts/" + file, import.meta.url)));
 }
 console.log("Deployable Worker validated; placeholders, local fonts, personal content, and separate admin are correct.");
