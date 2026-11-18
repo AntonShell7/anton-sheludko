@@ -13,6 +13,7 @@ const assetFiles = {
   "/images/project-placeholder.svg": ["images/project-placeholder.svg", "image/svg+xml"],
   "/images/portrait-placeholder.svg": ["images/portrait-placeholder.svg", "image/svg+xml"],
   "/images/ice-placeholder.svg": ["images/ice-placeholder.svg", "image/svg+xml"],
+  "/images/anton-autograph.png": ["images/anton-autograph.png", "image/png", "base64"],
   "/fonts/inter-variable.woff2": ["fonts/inter-variable.woff2", "font/woff2", "base64"]
 };
 const assets = {};

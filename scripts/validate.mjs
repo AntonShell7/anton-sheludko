@@ -28,4 +28,8 @@ for (const file of ["inter-variable.woff2"]) {
   assert.equal(font.headers.get("content-type"), "font/woff2");
   assert.deepEqual(Buffer.from(await font.arrayBuffer()), await readFile(new URL("../public/fonts/" + file, import.meta.url)));
 }
+const autograph = await worker.fetch(new Request("https://portfolio.example.test/images/anton-autograph.png"), {});
+assert.equal(autograph.status, 200);
+assert.equal(autograph.headers.get("content-type"), "image/png");
+assert.deepEqual(Buffer.from(await autograph.arrayBuffer()), await readFile(new URL("../public/images/anton-autograph.png", import.meta.url)));
 console.log("Deployable Worker validated; placeholders, local fonts, personal content, and separate admin are correct.");
