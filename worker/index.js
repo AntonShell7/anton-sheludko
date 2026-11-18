@@ -215,7 +215,12 @@ const app = {
         return htmlResponse(ASSETS["/"].body.replace(/<!-- ACHIEVEMENTS_START -->[\s\S]*?<!-- ACHIEVEMENTS_END -->/, achievements));
       }
       const asset = ASSETS[path];
-      if (asset && path !== "/admin" && method === "GET") return response(asset.body, 200, asset.type);
+      if (asset && path !== "/admin" && method === "GET") {
+        const body = asset.encoding === "base64"
+          ? Uint8Array.from(atob(asset.body), character => character.charCodeAt(0))
+          : asset.body;
+        return response(body, 200, asset.type);
+      }
       if (path.startsWith("/api/") || path.startsWith("/files/")) throw new HttpError(404, "Not found.");
       return htmlResponse('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found</title><link rel="stylesheet" href="/styles.css"><main class="container hero"><h1>Page not found.</h1><p><a href="/">Return to Anton’s portfolio →</a></p></main></html>', 404);
     } catch (error) {

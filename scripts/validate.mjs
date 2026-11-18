@@ -13,4 +13,11 @@ const html = await page.text();
 assert.ok(html.includes("Anton Sheludko") && html.includes("https://eaglish.ru/"));
 assert.ok(!html.includes("Temporary local QA check") && !html.includes("[Your Full Name]"));
 assert.ok(html.includes("Achievements and certificates will be added here."));
-console.log("Deployable Worker validated; personal content is present and achievements start empty.");
+assert.ok(!html.includes('href="/admin"'), "The public page must not link to the admin panel");
+for (const file of ["hockey-match.jpg", "hockey-arena.jpg"]) {
+  const image = await worker.fetch(new Request("https://portfolio.example.test/images/" + file), {});
+  assert.equal(image.status, 200);
+  assert.equal(image.headers.get("content-type"), "image/jpeg");
+  assert.deepEqual(Buffer.from(await image.arrayBuffer()), await readFile(new URL("../public/images/" + file, import.meta.url)));
+}
+console.log("Deployable Worker validated; personal content, separate admin, and both image responses are correct.");

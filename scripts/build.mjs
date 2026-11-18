@@ -1,4 +1,4 @@
-// Bundle text assets into one dependency-free Worker. Source stays easy to edit.
+// Bundle text and local images into one dependency-free Worker.
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 const assetFiles = {
   "/": ["index.html", "text/html; charset=utf-8"],
@@ -7,11 +7,14 @@ const assetFiles = {
   "/favicon.svg": ["favicon.svg", "image/svg+xml"],
   "/admin": ["admin.html", "text/html; charset=utf-8"],
   "/admin.css": ["admin.css", "text/css; charset=utf-8"],
-  "/admin.js": ["admin.js", "text/javascript; charset=utf-8"]
+  "/admin.js": ["admin.js", "text/javascript; charset=utf-8"],
+  "/images/hockey-match.jpg": ["images/hockey-match.jpg", "image/jpeg", "base64"],
+  "/images/hockey-arena.jpg": ["images/hockey-arena.jpg", "image/jpeg", "base64"]
 };
 const assets = {};
-for (const [route, [file, type]] of Object.entries(assetFiles)) {
-  assets[route] = { body: await readFile(new URL("../public/" + file, import.meta.url), "utf8"), type };
+for (const [route, [file, type, encoding = "utf8"]] of Object.entries(assetFiles)) {
+  const contents = await readFile(new URL("../public/" + file, import.meta.url));
+  assets[route] = { body: contents.toString(encoding), type, encoding };
 }
 const manifest = await readFile(new URL("../.openai/hosting.json", import.meta.url), "utf8");
 const config = JSON.parse(manifest);

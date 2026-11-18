@@ -1,98 +1,67 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Anton Sheludko — Student &amp; Developer</title>
-    <meta name="description" content="Anton Sheludko: final-year school student in Saint Petersburg, Python and C++ programmer, hockey player, and creator of the English-learning platform Eaglish.">
-    <meta name="theme-color" content="#fafaf8">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Anton Sheludko — Student &amp; Developer">
-    <meta property="og:description" content="Code, hockey, and learning. A personal portfolio featuring Eaglish, my English-learning project.">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/styles.css">
-    <script src="/script.js" defer></script>
-  </head>
-  <body id="top">
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="wordmark" href="#top" aria-label="Anton, back to top">Anton<span class="wordmark-dot" aria-hidden="true">.</span></a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
-          <span>Menu</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-        </button>
-        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-          <a href="#about">About</a><a href="#projects">Projects</a><a href="#achievements">Achievements</a><a href="#experience">Experience</a><a href="#contact">Contact <span aria-hidden="true">↗</span></a>
-        </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anton Sheludko — Code, Hockey &amp; Everything Between</title>
+  <meta name="description" content="Meet Anton Sheludko: a final-year school student in Saint Petersburg, Python and C++ programmer, hockey player, and creator of Eaglish. A story of building and learning.">
+  <meta name="theme-color" content="#f8f9fb">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Anton Sheludko — Code, Hockey &amp; Everything Between">
+  <meta property="og:description" content="Student. Builder. Hockey player. Explore my story and Eaglish, the English-learning platform I built from a personal problem.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/images/hockey-match.jpg">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="#top" aria-label="Anton, back to top">Anton<span class="wordmark-dot" aria-hidden="true">.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span>Menu</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation"><a href="#about">About</a><a href="#projects">Eaglish</a><a href="#hockey">Hockey</a><a href="#achievements">Achievements</a><a class="nav-contact" href="#contact">Say hello <span aria-hidden="true">↗</span></a></nav>
+    </div>
+    <progress class="reading-progress" max="100" value="0" aria-label="Page reading progress"></progress>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span class="accent-dot" aria-hidden="true"></span> A personal story, still unfolding</p><h1 id="hero-title">Anton<br> Sheludko<span class="accent">.</span></h1><p class="hero-subtitle">A student. A builder.<br> And a hockey player. <span class="emoji" aria-hidden="true">🏒</span></p><p class="hero-intro">I’m finishing school in Saint Petersburg, building things that help me learn, and making time for the game I’ve played for 14 years.</p><div class="hero-actions"><a class="button" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="quiet-link" href="#about">Meet the person <span aria-hidden="true">↓</span></a></div></div>
+      <div class="hero-visual" aria-label="A glimpse of my interests"><figure class="hero-photo"><img src="/images/hockey-match.jpg" width="1600" height="1067" fetchpriority="high" alt="Two hockey players facing off on the ice. Temporary stock image, not a photograph of Anton."><figcaption><span>On the ice</span><span>Temporary stock photo</span></figcaption></figure><a class="project-note" href="#projects"><span class="note-icon" aria-hidden="true">e.</span><span><span class="note-kicker">Off the ice, I’m building</span><strong>Eaglish</strong><span class="note-detail">My English-learning platform</span></span><span class="note-arrow" aria-hidden="true">↗</span></a><p class="visual-caption">A little code. A lot of practice.</p></div>
+      <div class="hero-details"><span><span class="detail-label">Based in</span>Saint Petersburg, Russia</span><span><span class="detail-label">Working with</span>Python &amp; C++</span><span><span class="detail-label">Looking ahead</span>Graduating June 2027</span><a href="#about" aria-label="Scroll to about me"><span>Keep exploring</span><span aria-hidden="true">↓</span></a></div>
+    </section>
+    <section class="section about-section container" id="about" aria-labelledby="about-title">
+      <div class="section-intro" data-reveal><p class="eyebrow">01 / The person behind the projects</p><h2 id="about-title">Curious enough to ask.<br> <span class="muted-heading">Committed enough to try.</span></h2></div>
+      <div class="about-grid"><div class="about-copy" data-reveal><p class="lead">I like seeing what happens when an idea becomes something I can actually use.</p><p>That’s how Eaglish started. I wanted to learn English more effectively, so I began exploring how memory works and built a platform around what I learned.</p><p>I’m a Grade 11 student at <strong>Lyceum No. 179 of Saint Petersburg</strong>. Beyond programming, I spend my time with olympiad mathematics, chess, English, and hockey.</p><a class="text-link" href="#journey">A few chapters of my story <span aria-hidden="true">↓</span></a></div><aside class="now-card" aria-labelledby="now-title" data-reveal><div class="now-heading"><span class="emoji" aria-hidden="true">📚</span><span class="eyebrow">On my desk right now</span></div><h3 id="now-title">Learning, every day.</h3><ul class="learning-list"><li><span>01</span><div><strong>Python &amp; C++</strong><p>Developing my programming skills and exploring competitive problems.</p></div></li><li><span>02</span><div><strong>Mathematics</strong><p>Studying in English and preparing for the EGE in maths and computer science.</p></div></li><li><span>03</span><div><strong>English</strong><p>Practising regularly, currently around B2+ by my own assessment.</p></div></li></ul></aside></div>
+      <ul class="interest-list" aria-label="Personal interests"><li><span aria-hidden="true">💻</span> Programming</li><li><span aria-hidden="true">♟️</span> Chess</li><li>Olympiad mathematics</li><li>Language learning</li><li><span aria-hidden="true">🏒</span> Hockey</li></ul>
+    </section>
+    <section class="section project-section" id="projects" aria-labelledby="projects-title"><div class="container">
+      <div class="section-heading" data-reveal><div><p class="eyebrow">02 / Something I built</p><h2 id="projects-title">One problem.<br> A project of my own.</h2></div><p class="section-description">From a school assignment<br> to part of my everyday life.</p></div>
+      <article class="project-feature" data-reveal><div class="project-content"><span class="status"><span aria-hidden="true"></span> Live &amp; in use</span><h3>Eaglish<span class="accent">.</span></h3><p class="project-deck">A better way to practise English.<br> Built because I needed one.</p><p>I was putting time into English without seeing the progress I wanted. I turned that frustration into my school project — and spent six months taking it from an idea to a working platform.</p><p>Today, my friends and I use it regularly for reading, vocabulary practice, and writing.</p><div class="project-actions"><a class="button" href="https://eaglish.ru/" target="_blank" rel="noopener noreferrer">Visit Eaglish <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a class="text-link" href="https://github.com/AntonShell7/eaglish" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></div>
+      <div class="learning-demo"><div class="demo-top"><span class="demo-logo">eaglish<span>.</span></span><span class="demo-label">The learning idea</span></div><div class="demo-steps" hidden role="tablist" aria-label="Explore the learning approach"><button type="button" id="step-read" role="tab" aria-selected="true" aria-controls="panel-read">1. Read</button><button type="button" id="step-recall" role="tab" aria-selected="false" aria-controls="panel-recall" tabindex="-1">2. Recall</button><button type="button" id="step-repeat" role="tab" aria-selected="false" aria-controls="panel-repeat" tabindex="-1">3. Repeat</button></div>
+      <div class="demo-panel" id="panel-read" role="tabpanel" aria-labelledby="step-read" tabindex="0"><span class="demo-eyebrow">A word in context</span><p class="example-sentence">“<mark>Curiosity</mark> turns a question into a project.”</p><div class="word-definition"><strong>curiosity</strong><span>/ˌkjʊəriˈɒsəti/ · noun</span><p>A strong desire to know or learn something.</p></div><span class="demo-bottom">Start with meaning, not a word list.</span></div>
+      <div class="demo-panel" id="panel-recall" role="tabpanel" aria-labelledby="step-recall" tabindex="0" hidden><span class="demo-eyebrow">A moment to remember</span><p class="recall-word">curiosity<span>What does it mean?</span></p><button class="recall-button" type="button" aria-expanded="false" aria-controls="recall-answer">Reveal meaning <span aria-hidden="true">↗</span></button><p class="recall-answer" id="recall-answer" hidden>A strong desire to know or learn something.</p><span class="demo-bottom">Try recalling it before looking.</span></div>
+      <div class="demo-panel" id="panel-repeat" role="tabpanel" aria-labelledby="step-repeat" tabindex="0" hidden><span class="demo-eyebrow">Make it stick</span><p class="repeat-heading">Come back to it.<br> Then use it.</p><ol class="review-steps"><li><span>01</span> Meet the word</li><li><span>02</span> Recall it later</li><li><span>03</span> Write something with it</li></ol><span class="demo-bottom">Revisit. Remember. Put it into practice.</span></div><p class="demo-disclaimer">Interactive illustration of the approach, not the app interface.</p></div></article>
+      <div class="project-notes"><div data-reveal><span class="small-label">The question</span><h4>How can learning last?</h4><p>I researched memory and long-term learning, then explored vocabulary in context and spaced repetition.</p></div><div data-reveal><span class="small-label">My contribution</span><h4>From idea to working product.</h4><p>I built the project from beginning to end, starting with my own problem and testing it through regular use.</p></div><div data-reveal><span class="small-label">A personal change</span><h4>A2 → B2 in six months.</h4><p>My self-assessed English level improved over the same period. The project also changed how I approach studying.</p></div></div><div class="tech-line"><span class="small-label">Project toolkit</span><ul aria-label="Eaglish technologies"><li>React</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS</li><li>Supabase</li></ul></div>
+    </div></section>
+    <section class="section hockey-section container" id="hockey" aria-labelledby="hockey-title"><div class="section-heading" data-reveal><div><p class="eyebrow">03 / Beyond the screen</p><h2 id="hockey-title">The other place<br> I put in the work. <span class="heading-emoji" aria-hidden="true">🏒</span></h2></div><p class="section-description">Fourteen years on the ice.<br> Still a big part of who I am.</p></div><figure class="hockey-panorama" data-reveal><img src="/images/hockey-arena.jpg" width="1600" height="1067" loading="lazy" alt="A wide view of a hockey arena. Temporary stock image, not Anton’s team or personal photo."><div class="hockey-image-title" aria-hidden="true">More than<br> a game.</div><figcaption>Temporary hockey imagery · Personal photographs to follow</figcaption></figure><div class="hockey-story"><div data-reveal><span class="small-label">Where I play</span><h3>Kronverkskie Barsy</h3><p class="team-note">ITMO University’s hockey team<br> Saint Petersburg</p></div><div data-reveal><p class="lead">I’ve played hockey for 14 years and train and compete at a professional level.</p><p>Alongside my final year of school, I play for Kronverkskie Barsy. Hockey was one of the reasons I moved to Saint Petersburg: I wanted to keep growing both in the classroom and on the ice.</p></div></div><div class="photo-note"><span aria-hidden="true">↳</span><p>This part of the story will grow with my childhood photos, team moments, and memories from the ice.</p><a href="#journey" class="text-link">Keep reading <span aria-hidden="true">↓</span></a></div></section>
+    <section class="quotes-section" aria-labelledby="quotes-title">
+      <div class="container quotes-inner">
+        <h2 class="eyebrow" id="quotes-title">Words I come back to</h2>
+        <div class="quote-list">
+          <blockquote>“If I play, I play to win”</blockquote>
+          <blockquote>“In my mind I'm always the best”</blockquote>
+          <blockquote>“Practice makes perfect”</blockquote>
+          <blockquote>“Pressure is a privilege”</blockquote>
+          <blockquote>“Nothing is impossible”</blockquote>
+        </div>
+        <div class="quote-controls" hidden><button type="button" id="quote-previous" aria-label="Previous quote">←</button><span class="quote-position" aria-label="Quote position">01 / 05</span><button type="button" id="quote-next" aria-label="Next quote">→</button></div>
       </div>
-    </header>
-
-    <main id="main" class="container" tabindex="-1">
-      <section class="hero" aria-labelledby="hero-title">
-        <p class="eyebrow"><span class="accent-dot" aria-hidden="true"></span> A student, always learning</p>
-        <h1 id="hero-title">Hi, I’m<br><span>Anton Sheludko</span><span class="accent">.</span></h1>
-        <p class="hero-subtitle">High school student · Programmer · Hockey player</p>
-        <p class="hero-intro">I’m a final-year school student in Saint Petersburg. I work with Python and C++, and I built Eaglish to make my own English practice more effective.</p>
-        <div class="hero-actions">
-          <a class="button" href="#projects">Explore my project <span aria-hidden="true">↓</span></a>
-          <a class="quiet-link" href="https://github.com/AntonShell7" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">GitHub <span aria-hidden="true">↗</span></a>
-          <a class="quiet-link" href="mailto:antonsheludko37@gmail.com">Email <span aria-hidden="true">↗</span></a>
-        </div>
-        <p class="hero-location">Saint Petersburg, Russia <span aria-hidden="true">/</span> Class of 2027</p>
-      </section>
-
-      <section class="section about-section" id="about" aria-labelledby="about-title">
-        <div class="section-intro"><p class="eyebrow section-number">01 / About</p><h2 id="about-title">A little about me.</h2></div>
-        <div class="about-copy">
-          <p>I’m in Grade 11 at <strong>Lyceum No. 179 of Saint Petersburg</strong>, with graduation expected in June 2027. I enjoy competitive programming, olympiad mathematics, and chess.</p>
-          <p>Right now, I’m developing my Python and C++ skills, studying mathematics in English, and working on my English at around B2+ level.</p>
-          <p>At 17, I moved to Saint Petersburg for better opportunities in education and hockey. I’ve been living independently since then, balancing school, programming, and training.</p>
-          <p class="small-label interests-label">Code &amp; interests</p>
-          <ul class="interest-list" aria-label="Skills and interests"><li>Python</li><li>C++</li><li>Competitive programming</li><li>Olympiad mathematics</li><li>Language learning</li></ul>
-        </div>
-      </section>
-
-      <section class="section projects-section" id="projects" aria-labelledby="projects-title">
-        <div class="section-heading">
-          <div><p class="eyebrow section-number">02 / Project</p><h2 id="projects-title">Built from a real problem.</h2></div>
-          <p class="section-description">A school project that became<br class="desktop-break"> part of my everyday learning.</p>
-        </div>
-        <article class="project-card featured-project">
-          <div class="project-topline"><span class="project-index">01 / PERSONAL PROJECT</span><span class="status">Live &amp; in use</span></div>
-          <div class="project-story-heading"><h3>Eaglish<span class="accent">.</span></h3><p>An English-learning platform</p></div>
-          <p class="project-summary">I was spending time on English without making the progress I wanted. That question became my school project: how could I build a better way to learn?</p>
-          <div class="project-story-grid">
-            <div><h4>The idea</h4><p>I began researching memory and long-term learning. Over six months, I turned that research into a working platform built around vocabulary in context and spaced repetition.</p></div>
-            <div><h4>What I built</h4><p>I took Eaglish from the initial idea to the working application. It brings together reading, vocabulary practice, and writing. My friends and I now use it regularly.</p></div>
-            <div><h4>What changed for me</h4><p>Building Eaglish changed how I approach learning languages. Over the same six months, my self-assessed English level improved from A2 to B2.</p></div>
-          </div>
-          <div class="project-tech-row"><span class="small-label">Built with</span><ul class="interest-list" aria-label="Eaglish technologies"><li>React</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS</li><li>Supabase</li></ul></div>
-          <div class="project-links real-project-links">
-            <a href="https://eaglish.ru/" target="_blank" rel="noopener noreferrer" aria-label="Visit Eaglish (opens in a new tab)">Visit Eaglish <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/AntonShell7/eaglish" target="_blank" rel="noopener noreferrer" aria-label="Eaglish source on GitHub (opens in a new tab)">View on GitHub <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-      </section>
-
-      <section class="section achievements-section" id="achievements" aria-labelledby="achievements-title">
-        <div class="section-intro"><p class="eyebrow section-number">03 / Achievements</p><h2 id="achievements-title">Milestones<br> along the way.</h2></div>
-        <div id="achievements-content"><!-- ACHIEVEMENTS_START --><p class="empty-note">Achievements and certificates will be added here.</p><!-- ACHIEVEMENTS_END --></div>
-      </section>
-
-      <section class="section experience-section" id="experience" aria-labelledby="experience-title">
-        <div class="section-heading"><div><p class="eyebrow section-number">04 / Education &amp; experience</p><h2 id="experience-title">In class. On the ice.</h2></div><p class="section-description">Two important parts<br class="desktop-break"> of my everyday life.</p></div>
-        <div class="experience-grid">
-          <article class="experience-entry"><p class="small-label">Education</p><h3>Lyceum No. 179 of Saint Petersburg</h3><p class="experience-meta">Grade 11 · Expected graduation: June 2027</p><p>I’m in my final year of secondary school, preparing for Russia’s Unified State Exam (EGE) in mathematics and computer science.</p></article>
-          <article class="experience-entry"><p class="small-label">Hockey</p><h3>Kronverkskie Barsy</h3><p class="experience-meta">ITMO University hockey team · Saint Petersburg</p><p>I’ve played hockey for 14 years and train and compete at a professional level. Alongside school, I play for ITMO University’s Kronverkskie Barsy team.</p></article>
-        </div>
-      </section>
-
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <p class="eyebrow section-number">05 / Contact</p><h2 id="contact-title">Let’s get in touch.</h2><p>I’m happy to talk about projects, learning,<br class="desktop-break"> or an interesting idea.</p>
-        <div class="contact-links"><a class="contact-email" href="mailto:antonsheludko37@gmail.com">antonsheludko37@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-socials"><a href="https://github.com/AntonShell7" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">GitHub <span aria-hidden="true">↗</span></a></div></div>
-      </section>
-    </main>
-    <footer class="site-footer container"><p>© <span id="current-year">2026</span> Anton Sheludko</p><div class="footer-links"><a id="admin-link" href="/admin" hidden>Manage achievements</a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div></footer>
-  </body>
+    </section>
+    <section class="section journey-section" id="journey" aria-labelledby="journey-title"><div class="container journey-grid"><div class="journey-intro" data-reveal><p class="eyebrow">04 / A few chapters so far</p><h2 id="journey-title">Growing up.<br> Moving forward.</h2><p>School, sport, and the decision<br> to find my own opportunities.</p><span class="journey-signature">Anton.</span></div><ol class="journey-list"><li data-reveal><span class="chapter-label">Over the years</span><h3>A life with hockey in it.</h3><p>Fourteen years of playing have made hockey a constant through different stages of my life.</p></li><li data-reveal><span class="chapter-label">At 17</span><h3>A new city. My own responsibility.</h3><p>I left my hometown for Saint Petersburg to find better opportunities in education and hockey. I’ve been living independently since then.</p></li><li id="experience" data-reveal><span class="chapter-label">Now</span><h3>My final year at school.</h3><p>I’m in Grade 11 at Lyceum No. 179, preparing for the EGE in mathematics and computer science while continuing to code, learn English, and train.</p></li><li data-reveal><span class="chapter-label">June 2027 · Expected</span><h3>The next chapter.</h3><p>Graduation — and the next step in my education, with computer science at the centre of my interests.</p></li></ol></div></section>
+    <section class="section achievements-section container" id="achievements" aria-labelledby="achievements-title"><div class="section-intro" data-reveal><p class="eyebrow">05 / Along the way</p><h2 id="achievements-title">Milestones &amp;<br> <span class="muted-heading">memories.</span></h2></div><div id="achievements-content" data-reveal><!-- ACHIEVEMENTS_START --><p class="empty-note">Achievements and certificates will be added here.</p><!-- ACHIEVEMENTS_END --></div></section>
+    <section class="contact-section container" id="contact" aria-labelledby="contact-title"><div data-reveal><p class="eyebrow">06 / Let’s talk</p><h2 id="contact-title">Every good conversation<br> starts with <span class="accent">hello.</span></h2><p>About code, learning, hockey — or what comes next.</p><a class="contact-email" href="mailto:antonsheludko37@gmail.com">antonsheludko37@gmail.com <span aria-hidden="true">↗</span></a></div><a class="contact-github" href="https://github.com/AntonShell7" target="_blank" rel="noopener noreferrer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 4 2 12l6 8m8-16 6 8-6 8M14 3l-4 18"/></svg><span>Find my work on GitHub</span><span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></section>
+  </main>
+  <footer class="site-footer container"><div><a class="wordmark" href="#top">Anton<span class="wordmark-dot">.</span></a><p>© <span id="current-year">2026</span> Anton Sheludko · Still learning, still building.</p></div><a class="back-top" href="#top">Back to top <span aria-hidden="true">↑</span></a><p class="photo-credits">Temporary stock photography, not personal photos: <a href="https://unsplash.com/photos/ice-hockey-players-on-rink-W2Hr3CQU8DI" target="_blank" rel="noopener noreferrer">Markus Spiske</a> &amp; <a href="https://unsplash.com/photos/ice-hockey-stadium-during-night-time-3nNr967WQvE" target="_blank" rel="noopener noreferrer">Klim Musalimov</a> / Unsplash.</p></footer>
+</body>
 </html>
