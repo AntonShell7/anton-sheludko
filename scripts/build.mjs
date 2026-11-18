@@ -15,6 +15,15 @@ const assetFiles = {
   "/images/portrait-placeholder.svg": ["images/portrait-placeholder.svg", "image/svg+xml"],
   "/images/ice-placeholder.svg": ["images/ice-placeholder.svg", "image/svg+xml"],
   "/images/anton-autograph.png": ["images/anton-autograph.png", "image/png", "base64"],
+  "/images/anton-sunset.jpg": ["images/anton-sunset.jpg", "image/jpeg", "base64"],
+  "/images/anton-off-duty.jpg": ["images/anton-off-duty.jpg", "image/jpeg", "base64"],
+  "/images/anton-new-chapter.jpg": ["images/anton-new-chapter.jpg", "image/jpeg", "base64"],
+  "/images/anton-early-hockey.jpg": ["images/anton-early-hockey.jpg", "image/jpeg", "base64"],
+  "/images/anton-hockey-portrait.jpg": ["images/anton-hockey-portrait.jpg", "image/jpeg", "base64"],
+  "/images/anton-hockey-action.jpg": ["images/anton-hockey-action.jpg", "image/jpeg", "base64"],
+  "/images/anton-studying.jpg": ["images/anton-studying.jpg", "image/jpeg", "base64"],
+  "/images/anton-robotics.jpg": ["images/anton-robotics.jpg", "image/jpeg", "base64"],
+  "/images/anton-training.jpg": ["images/anton-training.jpg", "image/jpeg", "base64"],
   "/fonts/inter-variable.woff2": ["fonts/inter-variable.woff2", "font/woff2", "base64"]
 };
 const assets = {};

@@ -11,7 +11,7 @@
   <meta property="og:description" content="Programming, hockey, and a story still unfolding. Explore my project, my interests, and the next chapter.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/images/atmosphere-placeholder.svg" as="image">
+  <link rel="preload" href="/images/anton-sunset.jpg" as="image">
   <link rel="stylesheet" href="/styles.css">
   <script src="/script.js" defer></script>
 </head>
@@ -33,14 +33,14 @@
 
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-background" aria-hidden="true"></div>
+      <div class="hero-background"><img src="/images/anton-sunset.jpg" width="2000" height="1500" fetchpriority="high" alt="Anton in orange sunglasses during a run at sunset."></div>
       <div class="hero-content container">
         <p class="eyebrow hero-eyebrow">Saint Petersburg, Russia · Class of 2027</p>
         <h1 id="hero-title">Anton<br>Sheludko</h1>
         <p class="hero-intro">Student. Programmer. Hockey player.<br>Building useful things, learning through practice,<br class="desktop-break"> and finding my own way forward.</p>
         <a class="outline-button" href="#projects">Explore my work <span aria-hidden="true">→</span></a>
       </div>
-      <div class="hero-photo-note"><span class="crosshair" aria-hidden="true"></span><span>Portrait / 01<br>Personal photograph to follow</span></div>
+      <p class="hero-photo-note"><span>One more step.<br>One more possibility.</span><small>A run at sunset</small></p>
       <a class="scroll-cue" href="#projects" aria-label="Scroll to projects"><span>Scroll</span><span class="scroll-line" aria-hidden="true"></span></a>
       <div class="hero-bottom container"><span>Code, curiosity &amp; fourteen years on the ice</span><span>Selected chapters — 2026</span></div>
     </section>
@@ -79,27 +79,53 @@
     <section class="section section-deep" id="about" aria-labelledby="about-title">
       <div class="container">
         <p class="eyebrow" data-reveal>The person / 02</p>
-        <div class="split-story"><h2 id="about-title" data-reveal>A curious mind.<br>A competitive<br>spirit.</h2><div class="prose" data-reveal><p>I’m a Grade 11 student at Lyceum No. 179 of Saint Petersburg, with graduation expected in June 2027. I work with Python and C++, and enjoy competitive programming, olympiad mathematics, and chess.</p><p>At 17, I left my hometown for better opportunities in education and hockey. I’ve been living independently in Saint Petersburg since then, balancing school, programming, and training.</p><p>Right now, I’m developing my programming skills, studying mathematics in English, and preparing for the EGE in mathematics and computer science. I also practise English regularly, currently around B2+ by my own assessment.</p></div></div>
+        <div class="split-story">
+          <h2 id="about-title" data-reveal>A curious mind.<br>A competitive<br>spirit.</h2>
+          <figure class="about-portrait photo-slot" data-photo-slot="about" data-reveal>
+            <img src="/images/anton-off-duty.jpg" width="843" height="1500" loading="lazy" decoding="async" alt="Anton pulling a playful face in a white hoodie.">
+            <figcaption><span class="photo-kicker">Off duty</span><span class="photo-thought">Always curious.<br>Still myself.</span></figcaption>
+          </figure>
+          <div class="prose" data-reveal><p>I’m a Grade 11 student at Lyceum No. 179 of Saint Petersburg, with graduation expected in June 2027. I work with Python and C++, and enjoy competitive programming, olympiad mathematics, and chess.</p><p>At 17, I left my hometown for better opportunities in education and hockey. I’ve been living independently in Saint Petersburg since then, balancing school, programming, and training.</p><p>Right now, I’m developing my programming skills, studying mathematics in English, and preparing for the EGE in mathematics and computer science. I also practise English regularly, currently around B2+ by my own assessment.</p></div>
+        </div>
         <div class="fact-strip" aria-label="A few chapters of my story"><div data-reveal><strong>14</strong><span>Years playing hockey</span></div><div data-reveal><strong>17</strong><span>Age I moved to Saint Petersburg</span></div><div data-reveal><strong>2027</strong><span>Expected graduation · June</span></div></div>
-        <figure class="photo-slot wide-photo" data-photo-slot="saint-petersburg" data-reveal><img src="/images/atmosphere-placeholder.svg" width="1600" height="1000" loading="lazy" alt="Atmospheric placeholder for a personal photograph from Saint Petersburg."><div class="photo-center-label" aria-hidden="true"><span class="crosshair"></span><span>Saint Petersburg</span><small>A new chapter</small></div><figcaption class="image-placeholder-label">Personal photograph / to follow</figcaption></figure>
-        <div class="field-note"><span class="eyebrow">Life notes</span><p>A new city, my own responsibility, and room to grow — in class and on the ice.</p></div>
+        <figure class="photo-slot wide-photo chapter-photo" data-photo-slot="saint-petersburg" data-reveal>
+          <img src="/images/anton-new-chapter.jpg" width="1350" height="1800" loading="lazy" decoding="async" alt="Anton with his arms open beneath a wide sky, reflected in water on an outdoor sports court.">
+          <figcaption><span class="photo-kicker">A new chapter</span><span class="photo-thought">Room to grow.<br>Courage to begin.</span></figcaption>
+        </figure>
+        <div class="field-note"><span class="eyebrow">Saint Petersburg</span><p>A new city, my own responsibility, and room to grow — in class and on the ice.</p></div>
       </div>
     </section>
 
     <section class="section container" id="hockey" aria-labelledby="hockey-title">
       <div class="section-heading" data-reveal><div><p class="eyebrow">Beyond the screen / 03</p><h2 id="hockey-title">Life on the ice</h2></div><p class="section-description">Fourteen years of hockey. Today, I train and compete at a professional level and play for ITMO University’s Kronverkskie Barsy, alongside my final year at school.</p></div>
       <div class="photo-gallery">
-        <figure class="gallery-item" data-reveal><div class="photo-slot portrait-photo" data-photo-slot="childhood"><img src="/images/portrait-placeholder.svg" width="800" height="1000" loading="lazy" alt="Placeholder for Anton’s childhood hockey photograph."><div class="photo-center-label" aria-hidden="true"><span class="crosshair"></span><span>Early years</span><small>Photograph to follow</small></div><span class="image-index">Archive / 01</span></div><figcaption><h3>The beginning</h3><p>Childhood · My first chapters on the ice</p></figcaption></figure>
+        <figure class="gallery-item" data-reveal><div class="photo-slot portrait-photo childhood-photo" data-photo-slot="childhood"><img src="/images/anton-early-hockey.jpg" width="780" height="1040" loading="lazy" decoding="async" alt="Anton as a child in a blue hockey jersey with a captain’s letter, helmet, gloves, and skates."></div><figcaption><p class="gallery-chapter">Early years · 2016</p><h3>The beginning</h3><p class="gallery-quote">Small skates. Big dreams.</p></figcaption></figure>
         <figure class="gallery-item" data-reveal><div class="photo-slot portrait-photo ice-photo" data-photo-slot="team"><img src="/images/ice-placeholder.svg" width="1200" height="860" loading="lazy" alt="Placeholder for a photograph of Anton playing hockey."><div class="photo-center-label" aria-hidden="true"><span class="crosshair"></span><span>On the ice</span><small>Photograph to follow</small></div><span class="image-index">Archive / 02</span></div><figcaption><h3>Kronverkskie Barsy</h3><p>ITMO University hockey team · Saint Petersburg</p></figcaption></figure>
-        <figure class="gallery-item" data-reveal><div class="photo-slot portrait-photo memory-photo" data-photo-slot="memories"><img src="/images/portrait-placeholder.svg" width="800" height="1000" loading="lazy" alt="Placeholder for a personal hockey memory or trophy photograph."><div class="photo-center-label" aria-hidden="true"><span class="crosshair"></span><span>Moments to keep</span><small>Photograph to follow</small></div><span class="image-index">Archive / 03</span></div><figcaption><h3>Along the way</h3><p>Team moments · Memories from the game</p></figcaption></figure>
+        <figure class="gallery-item" data-reveal><div class="photo-slot portrait-photo memory-photo" data-photo-slot="memories"><div class="hockey-portrait-frame"><img src="/images/anton-hockey-portrait.jpg" width="1016" height="2200" loading="lazy" decoding="async" alt="Anton looking up on the ice in his white number 37 hockey jersey, with his helmet in hand."></div></div><figcaption><p class="gallery-chapter">Moments to keep</p><h3>Along the way</h3><p class="gallery-quote">“If I play, I play to win”</p></figcaption></figure>
       </div>
       <div class="hockey-bottom"><span class="eyebrow">Code. School. Hockey.</span><p>Different parts of the same story.</p><a class="line-link" href="#achievements">The next chapter <span aria-hidden="true">↓</span></a></div>
     </section>
 
-    <section class="quote-section section-deep" aria-labelledby="quote-heading"><div class="container quote-inner">
-      <h2 class="eyebrow" id="quote-heading">Words I come back to</h2>
-      <div class="quote-list"><blockquote>“If I play, I play to win”</blockquote><blockquote>“In my mind I'm always the best”</blockquote><blockquote>“Practice makes perfect”</blockquote><blockquote>“Pressure is a privilege”</blockquote><blockquote>“Nothing is impossible”</blockquote></div>
-      <div class="quote-controls" hidden><button type="button" id="quote-previous" aria-label="Previous quote">←</button><span class="quote-position" aria-label="Quote position">01 / 05</span><button type="button" id="quote-next" aria-label="Next quote">→</button></div>
+    <section class="section section-deep moments-section" aria-labelledby="moments-title"><div class="container">
+      <div class="section-heading" data-reveal><div><p class="eyebrow">A personal photo journal</p><h2 id="moments-title">The moments<br>behind the words.</h2></div><p class="section-description">At a desk, on the ice, or learning alongside someone new. These are the moments I want to keep.</p></div>
+      <div class="moments-grid">
+        <figure class="moment moment-action" data-reveal>
+          <div class="moment-image"><img src="/images/anton-hockey-action.jpg" width="1170" height="777" loading="lazy" decoding="async" alt="Anton in his white number 37 jersey skating with the puck as an opponent follows."><blockquote class="ice-quote">Pressure is<br>a privilege</blockquote></div>
+          <figcaption><span>In the game</span><p>Every shift asks you to be present.</p></figcaption>
+        </figure>
+        <figure class="moment moment-study" data-reveal>
+          <div class="moment-image"><img src="/images/anton-studying.jpg" width="1050" height="1400" loading="lazy" decoding="async" alt="A childhood photograph of Anton writing in a school notebook at a desk lit by a lantern."><div class="moment-overlay"><span class="photo-kicker">Learning, from the beginning</span><blockquote>Practice<br>makes perfect</blockquote></div></div>
+          <figcaption><span>After school · 2016</span><p>Progress begins with the everyday work.</p></figcaption>
+        </figure>
+        <figure class="moment moment-robotics" data-reveal>
+          <div class="moment-image"><img src="/images/anton-robotics.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Anton and another student smiling and holding small wheeled robots in a computer classroom."><div class="moment-overlay"><span class="photo-kicker">Learning together</span><blockquote>Nothing<br>is impossible</blockquote></div></div>
+          <figcaption><span>Curiosity, shared</span><p>A little code. A new connection.</p></figcaption>
+        </figure>
+        <figure class="moment moment-training" data-reveal>
+          <div class="moment-image"><img src="/images/anton-training.jpg" width="1050" height="1400" loading="lazy" decoding="async" alt="Anton taking a mirror photograph in sports clothes, with a backpack and a thumbs-up."><div class="moment-overlay"><span class="photo-kicker">The work between the games</span><blockquote>In my mind<br>I'm always<br>the best</blockquote></div></div>
+          <figcaption><span>Showing up</span><p>Confidence starts with the work I put in.</p></figcaption>
+        </figure>
+      </div>
     </div></section>
 
     <section class="section section-deep awards-section" id="achievements" aria-labelledby="awards-title"><div class="container">

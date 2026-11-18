@@ -55,7 +55,7 @@ main:focus { outline:none; }
 .site-nav a:hover,.site-nav a[aria-current] { color:var(--text); }
 .site-nav a[aria-current] { text-decoration:underline; text-underline-offset:7px; text-decoration-thickness:1px; }
 .menu-toggle { display:none; }
-/* Full-bleed atmosphere: an honest visual placeholder for Anton’s future photo. */
+/* Full-bleed opening, with readable text over Anton's sunset photograph. */
 .hero { height:100svh; min-height:720px; max-height:1120px; position:relative; display:flex; align-items:center; isolation:isolate; overflow:hidden; }
 .hero-background { position:absolute; z-index:-2; inset:0; background:url('/images/atmosphere-placeholder.svg') center/cover no-repeat; }
 .hero:after { position:absolute; z-index:-1; inset:0; content:""; background:linear-gradient(90deg,#121a1c52,transparent 75%),linear-gradient(0deg,#1b2022f2,transparent 60%); }
@@ -131,16 +131,6 @@ main:focus { outline:none; }
 .hockey-bottom { display:flex; align-items:baseline; gap:30px; margin-top:56px; padding-top:24px; border-top:1px solid var(--border); }
 .hockey-bottom p { font-size:12px; color:var(--muted); }
 .hockey-bottom>a { margin-left:auto; }
-/* Five reader-controlled phrases supplied by Anton. */
-.quote-section { padding:88px 0; border-bottom:1px solid var(--border); }
-.quote-inner { text-align:center; }
-.quote-inner h2 { font-family:var(--body); letter-spacing:.04em; font-size:12px; font-weight:400; line-height:1.7; }
-.quote-list { max-width:1080px; margin:36px auto 0; min-height:130px; display:grid; align-items:center; }
-.quote-list blockquote { padding-block:8px; font-family:var(--heading); font-size:clamp(34px,4.5vw,66px); font-weight:600; line-height:1.1; text-transform:none; letter-spacing:-.035em; }
-.quote-controls { display:flex; align-items:center; justify-content:center; gap:25px; margin-top:28px; }
-.quote-controls button { background:none; border:1px solid #5e695b; display:grid; place-items:center; width:45px; height:45px; font-size:18px; transition:background .2s,color .2s; }
-.quote-controls button:hover { background:#ccd3c0; color:#1b2022; }
-.quote-position { font-family:var(--body); font-size:12px; letter-spacing:.04em; min-width:52px; color:var(--subtle); }
 /* Empty document slots are clearly labelled; real entries replace this group. */
 .archive-intro { display:flex; align-items:center; gap:40px; justify-content:space-between; padding-bottom:27px; border-bottom:1px solid var(--border); }
 .empty-note { font-size:14px; color:var(--muted); }
@@ -189,7 +179,6 @@ main:focus { outline:none; }
 @media(prefers-reduced-motion:no-preference) {
   [data-reveal].is-visible { animation:rise .8s cubic-bezier(.2,.65,.3,1) both; }
   .hero-content { animation:appear 1s ease-out both; }
-  .quote-list .is-changing { animation:appear .35s ease-out both; }
 }
 @media(prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto; }
@@ -357,12 +346,6 @@ main:focus { outline:none; }
   .hockey-bottom { margin-top:37px; gap:9px 20px; padding-top:20px; }
   .hockey-bottom p { flex-basis:100%; font-size:12px; }
   .hockey-bottom .line-link { margin-left:0; margin-top:7px; }
-  .quote-section { padding:63px 0; }
-  .quote-inner h2 { font-size:12px; }
-  .quote-list { margin-top:26px; min-height:156px; }
-  .quote-list blockquote { font-size:36px; line-height:1.13; }
-  .quote-controls { margin-top:23px; gap:22px; }
-  .quote-controls button { width:44px; height:44px; }
   .archive-intro { display:block; padding-bottom:22px; }
   .archive-intro .empty-note { margin-top:10px; font-size:12px; }
   .certificate-grid { gap:28px 16px; margin-top:25px; }
@@ -404,4 +387,170 @@ main:focus { outline:none; }
   .project-title-row>span { font-size:12px; }
   .fact-strip strong { font-size:35px; }
   .photo-gallery .photo-center-label>span:not(.crosshair) { font-size:12px; }
+}
+
+/* Personal photographs. Captions stay as selectable text, separate from the originals. */
+.hero { min-height:720px; background:#182224; }
+.hero-background { background:none; }
+.hero-background img { position:absolute; width:112%; max-width:none; height:100%; object-fit:cover; object-position:50% 42%; }
+.hero:after { background:linear-gradient(90deg,rgba(12,20,22,.88),rgba(12,20,22,.60) 31%,rgba(12,20,22,.05) 62%),linear-gradient(0deg,#182224 0%,rgba(24,34,36,.25) 25%,transparent 65%),linear-gradient(180deg,rgba(9,18,20,.28),transparent 25%); }
+.hero h1 { font-size:clamp(76px,8vw,124px); }
+.hero-content { padding-top:60px; }
+.hero-photo-note { top:auto; right:8%; bottom:105px; display:block; opacity:1; color:#fff8eb; text-align:right; letter-spacing:0; }
+.hero-photo-note>span { display:block; font-size:clamp(20px,2vw,28px); font-weight:500; line-height:1.3; letter-spacing:-.035em; }
+.hero-photo-note small { display:block; margin-top:15px; color:#e7ddc8; font-size:12px; }
+.hero-bottom { color:#c9cec5; }
+.photo-kicker { display:block; font-size:12px; line-height:1.6; letter-spacing:.035em; font-weight:400; }
+.photo-thought { display:block; margin-top:17px; font-size:clamp(28px,3.5vw,48px); line-height:1.12; font-weight:500; letter-spacing:-.04em; }
+.split-story { grid-template-areas:'portrait heading' 'portrait copy'; grid-template-rows:auto 1fr; column-gap:72px; row-gap:32px; align-items:start; }
+.split-story h2 { grid-area:heading; font-size:clamp(40px,4.5vw,64px); }
+.split-story .prose { grid-area:copy; }
+.about-portrait { grid-area:portrait; aspect-ratio:4/5; align-self:stretch; min-height:100%; }
+.about-portrait img { position:absolute; inset:0; object-position:50% 30%; }
+.about-portrait:after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,rgba(13,23,27,.84),transparent 50%); }
+.about-portrait figcaption { position:absolute; z-index:1; bottom:34px; left:34px; right:24px; }
+.about-portrait .photo-thought { font-size:34px; }
+.chapter-photo { height:700px; background:#223b42; }
+.chapter-photo img { position:absolute; right:0; width:70%; object-position:50% 51%; }
+.chapter-photo:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#223b42 30%,rgba(34,59,66,.7) 42%,transparent 70%); }
+.chapter-photo figcaption { position:absolute; left:44px; top:50%; transform:translateY(-50%); z-index:1; max-width:42%; }
+.chapter-photo .photo-kicker { max-width:210px; color:#d8e5e5; }
+.chapter-photo .photo-thought { font-size:clamp(32px,4vw,58px); }
+.field-note p { font-size:14px; }
+.portrait-photo { aspect-ratio:2/3; }
+.childhood-photo { background:#131719; }
+.childhood-photo img { object-position:center; object-fit:contain; }
+.memory-photo { background:#dae0df; }
+/* Frame only the photograph inside the supplied screenshot; retain the tournament mark. */
+.hockey-portrait-frame { position:absolute; inset:0; overflow:hidden; }
+.memory-photo img { width:100%; height:auto; max-width:none; object-fit:initial; transform:translateY(-15.32%); filter:none; }
+.gallery-item figcaption .gallery-chapter { margin:0 0 12px; font-size:12px; }
+.gallery-item figcaption .gallery-quote { font-size:16px; font-family:var(--heading); line-height:1.5; letter-spacing:-.02em; color:#d3d7cf; margin-top:12px; }
+.moments-section { padding-bottom:60px; }
+.moments-grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:72px 36px; align-items:start; }
+.moment { min-width:0; }
+.moment-image { position:relative; isolation:isolate; overflow:hidden; background:#283034; }
+.moment-image>img { width:100%; height:100%; object-fit:cover; }
+.moment-action { grid-column:1/-1; }
+.moment-action .moment-image { aspect-ratio:1170/777; }
+.ice-quote { position:absolute; left:27%; bottom:7.8%; width:46%; color:#294450; font-size:clamp(24px,4.8vw,68px); font-weight:600; letter-spacing:-.055em; line-height:1.02; transform:perspective(900px) rotateX(28deg) rotateZ(-8deg) skewX(-10deg); transform-origin:center; opacity:.87; mix-blend-mode:multiply; text-shadow:0 1px 0 #e4eff2; }
+.moment figcaption { display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin-top:18px; }
+.moment figcaption>span { flex-shrink:0; font-size:12px; color:var(--subtle); line-height:1.7; }
+.moment figcaption>p { font-size:14px; color:var(--muted); line-height:1.6; text-align:right; }
+.moment-study { grid-column:1/6; }
+.moment-study .moment-image { aspect-ratio:3/4; }
+.moment-robotics { grid-column:6/-1; margin-top:110px; }
+.moment-robotics .moment-image { aspect-ratio:4/3; }
+.moment-study figcaption,.moment-robotics figcaption { display:block; }
+.moment-study figcaption>p,.moment-robotics figcaption>p { margin-top:6px; text-align:left; }
+.moment-overlay { position:absolute; left:32px; right:25px; bottom:34px; z-index:1; color:#fffaf1; }
+.moment-overlay blockquote { margin-top:15px; font-size:clamp(32px,3.6vw,52px); line-height:1.08; font-weight:500; letter-spacing:-.045em; text-wrap:balance; }
+.moment-study .moment-image:after,.moment-robotics .moment-image:after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,rgba(13,23,29,.80),rgba(13,23,29,.08) 53%,transparent 65%); }
+.moment-study .moment-overlay { bottom:70px; }
+.moment-study .moment-image>img { object-position:center; }
+.moment-robotics .moment-overlay { bottom:28px; }
+.moment-training { grid-column:1/-1; }
+.moment-training .moment-image { aspect-ratio:2.4; }
+.moment-training .moment-image>img { object-position:50% 30%; }
+.moment-training .moment-image:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 30%,rgba(11,21,26,.38) 54%,rgba(11,21,26,.83)); }
+.moment-training .moment-overlay { left:57%; right:32px; top:50%; bottom:auto; transform:translateY(-50%); }
+.moment-training blockquote { font-size:clamp(30px,4.5vw,64px); }
+@media(max-width:1100px) {
+  .split-story { column-gap:40px; }
+  .split-story h2 { font-size:43px; }
+  .about-portrait { aspect-ratio:3/5; }
+  .chapter-photo { height:590px; }
+  .chapter-photo figcaption { left:32px; }
+  .moments-grid { column-gap:28px; }
+  .moment-robotics { margin-top:82px; }
+  .moment-overlay { left:25px; right:20px; }
+  .moment-overlay blockquote { font-size:37px; }
+  .moment-training blockquote { font-size:48px; }
+}
+@media(max-width:800px) {
+  .hero h1 { font-size:76px; }
+  .hero-background img { width:135%; object-position:50% 50%; }
+  .hero-photo-note { right:9%; bottom:100px; left:auto; }
+  .split-story { column-gap:30px; row-gap:24px; }
+  .split-story h2 { font-size:36px; }
+  .about-portrait { aspect-ratio:auto; }
+  .about-portrait figcaption { left:24px; bottom:28px; }
+  .about-portrait .photo-thought { font-size:28px; }
+  .chapter-photo { height:550px; }
+  .chapter-photo img { width:80%; }
+  .chapter-photo figcaption { left:28px; max-width:48%; }
+  .chapter-photo .photo-thought { font-size:36px; }
+  .moment-overlay { left:22px; }
+  .moment-overlay blockquote { font-size:30px; }
+  .moment-overlay .photo-kicker { font-size:12px; }
+  .moment-study .moment-overlay { bottom:44px; }
+  .moment-training .moment-image { aspect-ratio:2; }
+  .moment-training blockquote { font-size:40px; }
+  .moment-robotics { margin-top:55px; }
+}
+@media(max-width:600px) {
+  .hero { height:max(880px,100svh); min-height:880px; max-height:none; align-items:flex-end; }
+  .hero-background img { width:100%; height:66%; object-position:49% center; }
+  .hero:after { background:linear-gradient(0deg,#182224 36%,rgba(24,34,36,.82) 43%,transparent 60%),linear-gradient(180deg,rgba(9,18,20,.48),transparent 20%); }
+  .hero-content { padding-top:420px; padding-bottom:92px; }
+  .hero h1 { font-size:clamp(57px,14.8vw,82px); }
+  .hero-eyebrow { margin-bottom:20px; }
+  .hero-intro { margin-top:20px; line-height:1.65; }
+  .hero .outline-button { margin-top:24px; }
+  .hero-photo-note { top:95px; right:20px; left:auto; bottom:auto; text-align:right; max-width:180px; }
+  .hero-photo-note>span { font-size:17px; line-height:1.3; }
+  .hero-photo-note small { margin-top:8px; font-size:12px; }
+  .hero-bottom { bottom:20px; max-width:calc(100% - 70px); }
+  .hero-bottom>span:first-child { display:none; }
+  .scroll-cue { bottom:20px; }
+  .scroll-line { height:32px; }
+  .split-story { grid-template-columns:1fr; grid-template-areas:'heading' 'portrait' 'copy'; row-gap:30px; }
+  .split-story h2 { font-size:43px; }
+  .about-portrait { aspect-ratio:4/5; min-height:0; }
+  .about-portrait figcaption { left:25px; bottom:28px; }
+  .about-portrait .photo-thought { font-size:30px; }
+  .chapter-photo { height:auto; aspect-ratio:3/4; }
+  .chapter-photo img { width:100%; object-position:center; }
+  .chapter-photo:after { background:linear-gradient(180deg,rgba(13,35,46,.72),transparent 47%); }
+  .chapter-photo figcaption { left:24px; right:20px; top:28px; max-width:none; transform:none; }
+  .chapter-photo .photo-thought { font-size:34px; margin-top:12px; }
+  .chapter-photo .photo-kicker { max-width:none; font-size:12px; }
+  .photo-gallery { grid-template-columns:1fr; gap:38px; }
+  .gallery-item .portrait-photo,.gallery-item:first-child .portrait-photo { aspect-ratio:2/3; }
+  .gallery-item:first-child img { object-position:center; }
+  .gallery-item .ice-photo { aspect-ratio:4/3; }
+  .photo-gallery .photo-center-label>span:not(.crosshair) { font-size:24px; }
+  .photo-gallery .photo-center-label>small { max-width:none; }
+  .gallery-item h3 { font-size:25px; }
+  .gallery-item figcaption .gallery-quote { font-size:16px; }
+  .gallery-item figcaption p { font-size:14px; }
+  .moments-section { padding-bottom:0; }
+  .moments-grid { grid-template-columns:1fr; gap:45px; }
+  .moment { grid-column:auto; margin-top:0; }
+  .moment figcaption { display:block; margin-top:16px; }
+  .moment figcaption>p { margin-top:5px; text-align:left; }
+  .ice-quote { left:28%; bottom:9%; font-size:clamp(18px,6vw,34px); width:50%; transform:rotate(-7deg) skewX(-8deg); }
+  .moment-overlay { left:24px; right:20px; bottom:27px; }
+  .moment-overlay blockquote { font-size:36px; }
+  .moment-study .moment-overlay { bottom:60px; }
+  .moment-robotics .moment-overlay { bottom:22px; }
+  .moment-robotics .moment-overlay blockquote { font-size:30px; margin-top:8px; }
+  .moment-training .moment-image { aspect-ratio:3/4; }
+  .moment-training .moment-image>img { object-position:center; }
+  .moment-training .moment-image:after { background:linear-gradient(0deg,rgba(11,21,26,.9),transparent 60%); }
+  .moment-training .moment-overlay { top:auto; left:24px; right:20px; bottom:30px; transform:none; }
+  .moment-training blockquote { font-size:38px; }
+}
+@media(min-width:601px) and (max-width:1100px) {
+  .hero h1 { font-size:clamp(56px,8vw,82px); }
+  .hero-intro { max-width:34vw; }
+  .hero-intro .desktop-break { display:none; }
+}
+@media(max-width:360px) {
+  .hero-photo-note>span { font-size:15px; }
+  .hero-content { padding-top:410px; }
+  .hero h1 { font-size:55px; }
+  .split-story h2 { font-size:38px; }
+  .chapter-photo .photo-thought { font-size:29px; }
+  .moment-robotics .moment-overlay blockquote { font-size:26px; }
 }

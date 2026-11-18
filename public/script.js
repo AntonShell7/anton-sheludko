@@ -67,24 +67,3 @@ if ('IntersectionObserver' in window) {
   }, { threshold:0.08 });
   document.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
 }
-
-// Exact phrases selected by Anton. No automatic rotation or invented attribution.
-const quotes = [...document.querySelectorAll('.quote-list blockquote')];
-const quoteList = document.querySelector('.quote-list');
-const quoteControls = document.querySelector('.quote-controls');
-const quotePosition = document.querySelector('.quote-position');
-let quoteIndex = 0;
-function selectQuote(index) {
-  quoteIndex = (index + quotes.length) % quotes.length;
-  quotes.forEach((quote, position) => {
-    quote.hidden = position !== quoteIndex;
-    quote.classList.toggle('is-changing', position === quoteIndex);
-  });
-  quotePosition.textContent = `${String(quoteIndex + 1).padStart(2, '0')} / ${String(quotes.length).padStart(2, '0')}`;
-}
-quoteControls.hidden = false;
-selectQuote(0);
-quoteList.setAttribute('aria-live', 'polite');
-quoteList.setAttribute('aria-atomic', 'true');
-document.getElementById('quote-previous').addEventListener('click', () => selectQuote(quoteIndex - 1));
-document.getElementById('quote-next').addEventListener('click', () => selectQuote(quoteIndex + 1));
