@@ -26,7 +26,8 @@ const assetFiles = {
   "/images/anton-studying.jpg": ["images/anton-studying.jpg", "image/jpeg", "base64"],
   "/images/anton-robotics.jpg": ["images/anton-robotics.jpg", "image/jpeg", "base64"],
   "/images/anton-training.jpg": ["images/anton-training.jpg", "image/jpeg", "base64"],
-  "/fonts/inter-variable.woff2": ["fonts/inter-variable.woff2", "font/woff2", "base64"]
+  "/fonts/inter-variable.woff2": ["fonts/inter-variable.woff2", "font/woff2", "base64"],
+  "/fonts/caveat-semibold.ttf": ["fonts/caveat-semibold.ttf", "font/ttf", "base64"]
 };
 const assets = {};
 for (const [route, [file, type, encoding = "utf8"]] of Object.entries(assetFiles)) {

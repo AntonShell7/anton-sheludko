@@ -1,5 +1,6 @@
 /* Anton's selected Inter typography, with the existing graphite palette. */
 @font-face { font-family:Inter; src:url('/fonts/inter-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
+@font-face { font-family:Caveat; src:url('/fonts/caveat-semibold.ttf') format('truetype'); font-style:normal; font-weight:600; font-display:swap; }
 :root {
   --background:#23282b;
   --deep:#1b2022;
@@ -7,6 +8,8 @@
   --muted:#b3b7ae;
   --subtle:#a0ab97;
   --accent:#c1cbb0;
+  --pink:#ff93be;
+  --handwriting:Caveat,'Segoe Print',cursive;
   --border:#424a46;
   --heading:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --body:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -411,12 +414,13 @@ main:focus { outline:none; }
 .about-portrait:after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,rgba(13,23,27,.84),transparent 50%); }
 .about-portrait figcaption { position:absolute; z-index:1; bottom:34px; left:34px; right:24px; }
 .about-portrait .photo-thought { font-size:34px; }
-.chapter-photo { height:700px; background:#223b42; }
-.chapter-photo img { position:absolute; right:0; width:70%; object-position:50% 51%; }
-.chapter-photo:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#223b42 30%,rgba(34,59,66,.7) 42%,transparent 70%); }
-.chapter-photo figcaption { position:absolute; left:44px; top:50%; transform:translateY(-50%); z-index:1; max-width:42%; }
-.chapter-photo .photo-kicker { max-width:210px; color:#d8e5e5; }
-.chapter-photo .photo-thought { font-size:clamp(32px,4vw,58px); }
+.chapter-photo { height:700px; background:#2c4e58; }
+.chapter-photo img { position:absolute; right:0; width:76%; object-position:50% 51%; filter:brightness(1.14) saturate(1.2) contrast(1.02); }
+.chapter-photo:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#2c4e58 24%,rgba(44,78,88,.88) 34%,rgba(44,78,88,.2) 54%,transparent 72%); }
+.chapter-photo figcaption { position:absolute; left:44px; top:50%; transform:translateY(-50%); z-index:1; max-width:47%; }
+.chapter-photo .photo-kicker { color:var(--pink); font:600 clamp(30px,3.2vw,44px)/1.15 var(--handwriting); letter-spacing:0; transform:rotate(-5deg); transform-origin:left center; }
+.chapter-photo .photo-thought { font-size:clamp(32px,3.7vw,54px); margin-top:24px; text-shadow:0 2px 18px #203d4740; }
+.chapter-caption-note { display:block; margin-top:22px; color:#eff2eb; font-size:14px; line-height:1.5; }
 .field-note p { font-size:14px; }
 .portrait-photo { aspect-ratio:2/3; }
 .childhood-photo { background:#131719; }
@@ -470,10 +474,11 @@ main:focus { outline:none; }
   .about-portrait .photo-thought { font-size:30px; }
   .chapter-photo { height:auto; aspect-ratio:3/4; }
   .chapter-photo img { width:100%; object-position:center; }
-  .chapter-photo:after { background:linear-gradient(180deg,rgba(13,35,46,.72),transparent 47%); }
+  .chapter-photo:after { background:linear-gradient(180deg,rgba(28,59,72,.68),rgba(28,59,72,.16) 36%,transparent 55%); }
   .chapter-photo figcaption { left:24px; right:20px; top:28px; max-width:none; transform:none; }
-  .chapter-photo .photo-thought { font-size:34px; margin-top:12px; }
-  .chapter-photo .photo-kicker { max-width:none; font-size:12px; }
+  .chapter-photo .photo-thought { font-size:32px; margin-top:16px; }
+  .chapter-photo .photo-kicker { max-width:none; font-size:32px; }
+  .chapter-caption-note { display:none; }
   .photo-gallery { grid-template-columns:1fr; gap:38px; }
   .gallery-item .portrait-photo,.gallery-item:first-child .portrait-photo { aspect-ratio:2/3; }
   .gallery-item:first-child img { object-position:center; }
@@ -497,7 +502,9 @@ main:focus { outline:none; }
   .hero-content { padding-top:410px; }
   .hero h1 { font-size:55px; }
   .split-story h2 { font-size:38px; }
-  .chapter-photo .photo-thought { font-size:29px; }
+  .chapter-photo figcaption { top:20px; left:20px; right:16px; }
+  .chapter-photo .photo-kicker { font-size:27px; }
+  .chapter-photo .photo-thought { font-size:26px; margin-top:10px; }
 }
 
 /* Four photographs, one quiet treatment. Every card fits within the viewport. */
@@ -510,8 +517,13 @@ main:focus { outline:none; }
 .moment-copy { position:absolute; z-index:2; left:32px; right:24px; bottom:30px; color:#fffaf1; text-shadow:0 2px 20px #101b2359; }
 .moment-quote { font:500 clamp(30px,3.1vw,46px)/1.1 var(--heading); letter-spacing:-.04em; }
 .moment-note { margin-bottom:10px; font-size:13px; line-height:1.5; letter-spacing:.01em; color:#f0f0e6; }
-.moment-age { position:absolute; z-index:2; top:24px; left:32px; padding:5px 10px; color:#fffaf1; background:#16202687; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); font-size:12px; line-height:1.5; letter-spacing:.025em; }
-.moment-action .moment-age { left:auto; right:24px; }
+.photo-age { position:absolute; z-index:2; color:var(--pink); font:600 clamp(30px,3.1vw,42px)/1 var(--handwriting); white-space:nowrap; text-shadow:0 1px 2px #192731b3,0 3px 14px #19273180; transform:rotate(-6deg); }
+.photo-age strong { font-size:1.18em; font-weight:600; }
+.moment-age { top:24px; left:28px; }
+.moment-action .moment-age { top:16px; left:auto; right:26px; transform:rotate(5deg); }
+.moment-study .moment-age { top:22px; left:26px; transform:rotate(-7deg); }
+.moment-training .moment-age { top:auto; left:auto; bottom:28px; right:26px; transform:rotate(-5deg); }
+.childhood-photo .photo-age { left:24px; bottom:42px; }
 .moment-study .moment-image>img { object-position:50% 35%; }
 .moment-training .moment-image>img { object-position:50% 30%; }
 .moment-training .moment-copy { top:28px; bottom:auto; left:auto; right:28px; width:43%; text-align:right; }
@@ -541,7 +553,12 @@ main:focus { outline:none; }
   .moment-copy { left:20px; right:20px; bottom:20px; }
   .moment-quote { font-size:clamp(27px,8vw,36px); }
   .moment-note { font-size:12px; margin-bottom:8px; }
-  .moment-age { top:16px; left:20px; font-size:12px; padding:4px 8px; }
+  .photo-age { font-size:30px; }
+  .moment-age { top:18px; left:20px; }
+  .moment-action .moment-age { top:10px; right:20px; }
+  .moment-study .moment-age { left:20px; top:20px; }
+  .moment-training .moment-age { right:20px; bottom:20px; }
+  .childhood-photo .photo-age { left:24px; bottom:42px; font-size:36px; }
   .moment-training .moment-copy { top:50px; right:20px; width:45%; }
   .moment-training .moment-quote { font-size:clamp(23px,6.3vw,32px); }
   .moment-training .moment-note { margin-top:10px; }
