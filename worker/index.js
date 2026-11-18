@@ -63,7 +63,8 @@ function publicRecord(record) {
   };
 }
 function renderAchievements(records) {
-  if (!records.length) return '<p class="empty-note">Achievements and certificates will be added here.</p>';
+  // Keep the clearly labelled empty document collection from the page template.
+  if (!records.length) return null;
   return '<ol class="milestone-list">' + records.map(record => {
     const file = record.file ? `<a class="achievement-file" href="/files/${record.id}" target="_blank" rel="noopener noreferrer">${record.file.type === "application/pdf" ? "Download certificate (PDF)" : "View certificate"} <span aria-hidden="true">↗</span></a>` : "";
     const proof = record.proofUrl ? `<a class="achievement-file" href="${escapeHTML(record.proofUrl)}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>` : "";
@@ -212,7 +213,7 @@ const app = {
         let achievements;
         try { achievements = renderAchievements((await readRecords(env)).filter(record => record.published)); }
         catch { achievements = '<p class="empty-note">Achievements are temporarily unavailable. Please check back later.</p>'; }
-        return htmlResponse(ASSETS["/"].body.replace(/<!-- ACHIEVEMENTS_START -->[\s\S]*?<!-- ACHIEVEMENTS_END -->/, achievements));
+        return htmlResponse(ASSETS["/"].body.replace(/<!-- ACHIEVEMENTS_START -->[\s\S]*?<!-- ACHIEVEMENTS_END -->/, original => achievements ?? original));
       }
       const asset = ASSETS[path];
       if (asset && path !== "/admin" && method === "GET") {

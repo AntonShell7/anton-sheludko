@@ -47,8 +47,9 @@ test("writes reject foreign origins and requests without the custom form header"
 
 test("drafts, attachments, publication, reload persistence, editing, and deletion", async t => {
   const { env, directory } = await setup(t);
+  assert.match(await (await call(env, "/")).text(), /class="certificate-grid"/);
   const document = new File(["%PDF-1.4\nTest-only certificate\n%%EOF"], "test-certificate.pdf", { type: "application/pdf" });
-  const created = await write(env, api, "POST", form({ title: '<img src=x onerror="alert(1)">', description: "First line\nSecond line", proofUrl: "https://example.test/result" }, document));
+  const created = await write(env, api, "POST", form({ title: '<img src=x onerror="alert(1)"> $&', description: "First line\nSecond line", proofUrl: "https://example.test/result" }, document));
   assert.equal(created.status, 201);
   const initial = (await created.json()).achievement;
   assert.equal(initial.published, false);
@@ -68,6 +69,8 @@ test("drafts, attachments, publication, reload persistence, editing, and deletio
   const html = await (await call(env, "/")).text();
   assert.match(html, /&lt;img src=x onerror=&quot;alert\(1\)&quot;&gt;/);
   assert.ok(!html.includes('<img src=x onerror="alert(1)">'));
+  assert.ok(html.includes('$&amp;'), "Replacement-like text must render literally");
+  assert.ok(!html.includes('class="certificate-grid"'), "Published entries replace the empty document slots");
   assert.equal((await write(env, api + "/" + initial.id, "PUT", form({ updatedAt: "old-version" }))).status, 409);
   const removedFile = await write(env, api + "/" + initial.id, "PUT", form({ updatedAt: current.updatedAt, removeFile: "on" }));
   assert.equal(removedFile.status, 200);
@@ -75,6 +78,7 @@ test("drafts, attachments, publication, reload persistence, editing, and deletio
   assert.equal((await env.BUCKET.list({ prefix: "achievements/files/" })).objects.length, 0);
   assert.equal((await write(env, api + "/" + initial.id, "DELETE")).status, 200);
   assert.equal((await env.BUCKET.list()).objects.length, 0);
+  assert.match(await (await call(env, "/")).text(), /class="certificate-grid"/);
 });
 
 test("attachment replacement and record deletion clean up uploaded files", async t => {

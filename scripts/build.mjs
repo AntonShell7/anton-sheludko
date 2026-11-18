@@ -7,9 +7,14 @@ const assetFiles = {
   "/favicon.svg": ["favicon.svg", "image/svg+xml"],
   "/admin": ["admin.html", "text/html; charset=utf-8"],
   "/admin.css": ["admin.css", "text/css; charset=utf-8"],
+  "/admin-base.css": ["admin-base.css", "text/css; charset=utf-8"],
   "/admin.js": ["admin.js", "text/javascript; charset=utf-8"],
-  "/images/hockey-match.jpg": ["images/hockey-match.jpg", "image/jpeg", "base64"],
-  "/images/hockey-arena.jpg": ["images/hockey-arena.jpg", "image/jpeg", "base64"]
+  "/images/atmosphere-placeholder.svg": ["images/atmosphere-placeholder.svg", "image/svg+xml"],
+  "/images/project-placeholder.svg": ["images/project-placeholder.svg", "image/svg+xml"],
+  "/images/portrait-placeholder.svg": ["images/portrait-placeholder.svg", "image/svg+xml"],
+  "/images/ice-placeholder.svg": ["images/ice-placeholder.svg", "image/svg+xml"],
+  "/fonts/inter-regular.ttf": ["fonts/inter-regular.ttf", "font/ttf", "base64"],
+  "/fonts/ibm-plex-mono.ttf": ["fonts/ibm-plex-mono.ttf", "font/ttf", "base64"]
 };
 const assets = {};
 for (const [route, [file, type, encoding = "utf8"]] of Object.entries(assetFiles)) {

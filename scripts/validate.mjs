@@ -14,10 +14,18 @@ assert.ok(html.includes("Anton Sheludko") && html.includes("https://eaglish.ru/"
 assert.ok(!html.includes("Temporary local QA check") && !html.includes("[Your Full Name]"));
 assert.ok(html.includes("Achievements and certificates will be added here."));
 assert.ok(!html.includes('href="/admin"'), "The public page must not link to the admin panel");
-for (const file of ["hockey-match.jpg", "hockey-arena.jpg"]) {
+assert.ok(html.includes('class="certificate-grid"'), "Empty collection should show labelled document placeholders");
+assert.ok(!html.includes("unsplash.com"), "Stock photos should be replaced by placeholders");
+for (const file of ["atmosphere-placeholder.svg", "project-placeholder.svg", "portrait-placeholder.svg", "ice-placeholder.svg"]) {
   const image = await worker.fetch(new Request("https://portfolio.example.test/images/" + file), {});
   assert.equal(image.status, 200);
-  assert.equal(image.headers.get("content-type"), "image/jpeg");
+  assert.equal(image.headers.get("content-type"), "image/svg+xml");
   assert.deepEqual(Buffer.from(await image.arrayBuffer()), await readFile(new URL("../public/images/" + file, import.meta.url)));
 }
-console.log("Deployable Worker validated; personal content, separate admin, and both image responses are correct.");
+for (const file of ["inter-regular.ttf", "ibm-plex-mono.ttf"]) {
+  const font = await worker.fetch(new Request("https://portfolio.example.test/fonts/" + file), {});
+  assert.equal(font.status, 200);
+  assert.equal(font.headers.get("content-type"), "font/ttf");
+  assert.deepEqual(Buffer.from(await font.arrayBuffer()), await readFile(new URL("../public/fonts/" + file, import.meta.url)));
+}
+console.log("Deployable Worker validated; placeholders, local fonts, personal content, and separate admin are correct.");
