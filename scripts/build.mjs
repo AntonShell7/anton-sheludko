@@ -21,6 +21,8 @@ const assetFiles = {
   "/images/anton-early-hockey.jpg": ["images/anton-early-hockey.jpg", "image/jpeg", "base64"],
   "/images/anton-hockey-portrait.jpg": ["images/anton-hockey-portrait.jpg", "image/jpeg", "base64"],
   "/images/anton-hockey-action.jpg": ["images/anton-hockey-action.jpg", "image/jpeg", "base64"],
+  "/images/anton-hockey-action-clean.jpg": ["images/anton-hockey-action-clean.jpg", "image/jpeg", "base64"],
+  "/images/anton-hockey-portrait-clean.jpg": ["images/anton-hockey-portrait-clean.jpg", "image/jpeg", "base64"],
   "/images/anton-studying.jpg": ["images/anton-studying.jpg", "image/jpeg", "base64"],
   "/images/anton-robotics.jpg": ["images/anton-robotics.jpg", "image/jpeg", "base64"],
   "/images/anton-training.jpg": ["images/anton-training.jpg", "image/jpeg", "base64"],
