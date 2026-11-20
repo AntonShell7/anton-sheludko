@@ -526,18 +526,20 @@ main:focus { outline:none; }
   .contact-links a,.contact-icon { transition:none; }
 }
 
-/* Equal-height photographs and compact captions keep each chapter together. */
+/* Full-size portraits keep their original 2:3 frames and compact captions. */
 #hockey { padding-block:100px; }
 #hockey .section-heading { gap:40px; margin-bottom:28px; }
 #hockey .section-heading .eyebrow { margin-bottom:10px; }
 #hockey h2 { font-size:clamp(36px,3.8vw,52px); }
 #hockey .section-description { max-width:420px; line-height:1.5; }
-.photo-gallery { --hockey-photo-height:clamp(210px,calc(100svh - 360px),420px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.photo-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; }
 .gallery-item { min-width:0; }
-.portrait-photo { width:100%; aspect-ratio:4/5; max-height:var(--hockey-photo-height); background:#161b1e; }
-.childhood-photo>img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; }
+.portrait-photo { width:100%; aspect-ratio:2/3; background:#161b1e; }
+.childhood-photo>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+/* Only the narrow outer strips are generated; the person stays in the original photo. */
+.childhood-photo>.childhood-original { top:5.555556%; bottom:5.555556%; height:88.888889%; object-fit:contain; -webkit-mask-image:linear-gradient(transparent,#000 2px,#000 calc(100% - 2px),transparent); mask-image:linear-gradient(transparent,#000 2px,#000 calc(100% - 2px),transparent); }
 /* The original portrait and its small restored corner scale together. */
-.hockey-portrait-frame { position:absolute; left:50%; top:0; width:auto; height:100%; aspect-ratio:2/3; transform:translateX(-50%); overflow:hidden; background:#dae0df; }
+.hockey-portrait-frame { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; background:#dae0df; }
 .memory-photo img { width:100%; height:auto; max-width:none; object-fit:initial; transform:translateY(-15.32%); filter:none; }
 .memory-photo .portrait-repair { height:100%; object-fit:cover; transform:none; }
 .ice-photo>img { position:absolute; inset:0; object-position:center; filter:brightness(.85); }
@@ -554,8 +556,11 @@ main:focus { outline:none; }
 .hockey-bottom { display:flex; align-items:center; flex-wrap:wrap; gap:8px 24px; margin-top:24px; padding-top:12px; border-top:1px solid var(--border); }
 .hockey-bottom p { font-size:12px; color:var(--muted); }
 .hockey-bottom>a { margin-left:auto; }
-@media(min-width:760px) and (max-width:1000px) {
-  .photo-gallery { gap:16px; }
+@media(min-width:1001px) and (max-width:1100px) {
+  .photo-gallery { gap:22px; }
+}
+@media(min-width:601px) and (max-width:1000px) {
+  .photo-gallery { gap:18px; }
   #hockey .section-heading { gap:28px; }
   #hockey .section-description { max-width:320px; }
   .photo-gallery .photo-age { left:12px; top:18px; font-size:26px; }
@@ -564,9 +569,11 @@ main:focus { outline:none; }
   #hockey { padding-block:80px; }
   #hockey .section-heading { flex-direction:column; align-items:flex-start; gap:16px; margin-bottom:24px; }
   #hockey .section-description { max-width:440px; }
-  .photo-gallery { --hockey-photo-height:clamp(210px,calc(100svh - 270px),400px); grid-template-columns:1fr; gap:28px; }
-  .gallery-item { width:100%; max-width:440px; margin-inline:auto; }
+  .hockey-bottom { align-items:baseline; }
+}
+@media(max-width:600px) {
+  .photo-gallery { grid-template-columns:1fr; gap:28px; }
+  .gallery-item { width:100%; }
   .gallery-item h3 { font-size:22px; }
   .photo-gallery .photo-age { left:18px; top:20px; font-size:30px; }
-  .hockey-bottom { align-items:baseline; }
 }
