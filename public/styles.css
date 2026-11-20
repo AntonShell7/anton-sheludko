@@ -430,6 +430,7 @@ main:focus { outline:none; }
 .hockey-portrait-frame { position:absolute; inset:0; overflow:hidden; }
 .memory-photo img { width:100%; height:auto; max-width:none; object-fit:initial; transform:translateY(-15.32%); filter:none; }
 .gallery-item figcaption .gallery-chapter { margin:0 0 12px; font-size:12px; }
+.gallery-item figcaption .gallery-team { font-size:14px; line-height:1.6; letter-spacing:0; }
 .gallery-item figcaption .gallery-quote { font-size:16px; font-family:var(--heading); line-height:1.5; letter-spacing:-.02em; color:#d3d7cf; margin-top:12px; }
 @media(max-width:1100px) {
   .split-story { column-gap:40px; }
@@ -522,8 +523,8 @@ main:focus { outline:none; }
 .moment-age { top:24px; left:28px; }
 .moment-action .moment-age,.moment-study .moment-age { top:16px; left:auto; right:26px; transform:rotate(5deg); }
 .moment-training .moment-age { top:auto; left:auto; bottom:28px; right:26px; transform:rotate(-5deg); }
-.childhood-photo .photo-age { left:24px; top:46px; }
-.memory-photo .photo-age { left:24px; bottom:40px; }
+.photo-gallery .photo-age { left:24px; top:46px; }
+.memory-photo .photo-age { top:16px; }
 .moment-study .moment-image>img { object-position:50% 35%; }
 .moment-training .moment-image>img { object-position:50% 30%; }
 .moment-training .moment-copy { top:28px; bottom:auto; left:auto; right:28px; width:43%; text-align:right; }
@@ -557,7 +558,7 @@ main:focus { outline:none; }
   .moment-age { top:18px; left:20px; }
   .moment-action .moment-age,.moment-study .moment-age { top:10px; right:20px; }
   .moment-training .moment-age { right:20px; bottom:20px; }
-  .childhood-photo .photo-age,.memory-photo .photo-age { font-size:36px; }
+  .photo-gallery .photo-age { font-size:36px; }
   .moment-training .moment-copy { top:50px; right:20px; width:45%; }
   .moment-training .moment-quote { font-size:clamp(23px,6.3vw,32px); }
   .moment-training .moment-note { margin-top:10px; }
