@@ -122,18 +122,6 @@ main:focus { outline:none; }
 .wide-photo .photo-center-label>span:not(.crosshair) { font-size:36px; letter-spacing:.04em; }
 .field-note { display:flex; align-items:baseline; gap:29px; margin-top:20px; }
 .field-note p { font-size:12px; color:var(--muted); }
-/* Portrait proportions echo the reference's team gallery. */
-.photo-gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-.portrait-photo { aspect-ratio:4/5; }
-.portrait-photo img { object-position:center; }
-.ice-photo img { object-position:61% center; filter:brightness(.85); }
-.memory-photo img { transform:scaleX(-1); filter:saturate(.4) brightness(.78); }
-.gallery-item figcaption { margin-top:22px; }
-.gallery-item h3 { font-size:22px; line-height:1.1; }
-.gallery-item figcaption p { font-family:var(--body); font-size:12px; line-height:1.9; letter-spacing:.04em; text-transform:none; color:var(--subtle); margin-top:11px; max-width:300px; }
-.hockey-bottom { display:flex; align-items:baseline; gap:30px; margin-top:56px; padding-top:24px; border-top:1px solid var(--border); }
-.hockey-bottom p { font-size:12px; color:var(--muted); }
-.hockey-bottom>a { margin-left:auto; }
 /* Empty document slots are clearly labelled; real entries replace this group. */
 .archive-intro { display:flex; align-items:center; gap:40px; justify-content:space-between; padding-bottom:27px; border-bottom:1px solid var(--border); }
 .empty-note { font-size:14px; color:var(--muted); }
@@ -203,10 +191,8 @@ main:focus { outline:none; }
   .project-title-row { display:block; }
   .project-title-row>span { display:block; margin-top:9px; }
   .split-story { gap:45px; }
-  .photo-gallery { gap:22px; }
   .photo-center-label>span:not(.crosshair) { font-size:18px; }
   .photo-center-label>small { font-size:12px; }
-  .gallery-item h3 { font-size:19px; }
   .certificate-grid { gap:20px; }
   .contact-grid { gap:60px; }
   .contact-details>div { grid-template-columns:70px 1fr; gap:18px; }
@@ -254,17 +240,8 @@ main:focus { outline:none; }
   .wide-photo { height:390px; margin-top:55px; }
   .field-note { gap:20px; }
   .field-note p { font-size:12px; }
-  .photo-gallery { gap:18px; }
-  .photo-gallery .photo-center-label>span:not(.crosshair) { font-size:14px; }
-  .photo-gallery .photo-center-label>small { max-width:100px; text-align:center; line-height:1.8; }
-  .gallery-item h3 { font-size:17px; }
-  .gallery-item figcaption p { font-size:12px; }
   .image-index { font-size:12px; left:16px; top:17px; }
   .image-placeholder-label { font-size:12px; left:16px; bottom:16px; }
-  .hockey-bottom { gap:20px; flex-wrap:wrap; margin-top:40px; }
-  .hockey-bottom p { font-size:12px; }
-  .hockey-bottom .eyebrow { font-size:12px; }
-  .hockey-bottom .line-link { font-size:12px; }
   .certificate-grid { grid-template-columns:repeat(2,1fr); gap:35px 25px; }
   .document-sheet { aspect-ratio:1; }
   .certificate-placeholder h3 { font-size:23px; }
@@ -331,24 +308,8 @@ main:focus { outline:none; }
   .wide-photo .photo-center-label>small { font-size:12px; }
   .field-note { display:block; margin-top:17px; }
   .field-note p { font-size:12px; line-height:1.9; margin-top:8px; }
-  .photo-gallery { grid-template-columns:1fr 1fr; gap:33px 16px; }
-  .gallery-item:first-child { grid-column:1/-1; }
-  .gallery-item:first-child .portrait-photo { aspect-ratio:1.15; }
-  .gallery-item:first-child img { object-position:center 57%; }
-  .gallery-item:first-child .photo-center-label>span:not(.crosshair) { font-size:24px; }
-  .gallery-item:first-child .photo-center-label>small { max-width:none; font-size:12px; }
-  .gallery-item:first-child h3 { font-size:25px; }
-  .photo-gallery .portrait-photo:not(:first-child) { aspect-ratio:4/5; }
-  .photo-gallery .photo-center-label>span:not(.crosshair) { font-size:14px; text-align:center; padding-inline:10px; }
-  .photo-gallery .photo-center-label .crosshair { transform:scale(.75); margin-bottom:18px; }
-  .gallery-item h3 { font-size:19px; line-height:1.15; }
-  .gallery-item figcaption { margin-top:16px; }
-  .gallery-item figcaption p { font-size:12px; letter-spacing:.04em; margin-top:10px; }
   .image-index { font-size:12px; left:14px; top:14px; }
   .image-placeholder-label { left:15px; font-size:12px; }
-  .hockey-bottom { margin-top:37px; gap:9px 20px; padding-top:20px; }
-  .hockey-bottom p { flex-basis:100%; font-size:12px; }
-  .hockey-bottom .line-link { margin-left:0; margin-top:7px; }
   .archive-intro { display:block; padding-bottom:22px; }
   .archive-intro .empty-note { margin-top:10px; font-size:12px; }
   .certificate-grid { gap:28px 16px; margin-top:25px; }
@@ -389,7 +350,6 @@ main:focus { outline:none; }
   .contact-details dd { font-size:14px; }
   .project-title-row>span { font-size:12px; }
   .fact-strip strong { font-size:35px; }
-  .photo-gallery .photo-center-label>span:not(.crosshair) { font-size:12px; }
 }
 
 /* Personal photographs. Captions stay as selectable text, separate from the originals. */
@@ -422,16 +382,6 @@ main:focus { outline:none; }
 .chapter-photo .photo-thought { font-size:clamp(32px,3.7vw,54px); margin-top:24px; text-shadow:0 2px 18px #203d4740; }
 .chapter-caption-note { display:block; margin-top:22px; color:#eff2eb; font-size:14px; line-height:1.5; }
 .field-note p { font-size:14px; }
-.portrait-photo { aspect-ratio:2/3; }
-.childhood-photo { background:#131719; }
-.childhood-photo img { object-position:center; object-fit:contain; }
-.memory-photo { background:#dae0df; }
-/* Keep the original photograph; mask in only the restored corner of ice. */
-.hockey-portrait-frame { position:absolute; inset:0; overflow:hidden; }
-.memory-photo img { width:100%; height:auto; max-width:none; object-fit:initial; transform:translateY(-15.32%); filter:none; }
-.gallery-item figcaption .gallery-chapter { margin:0 0 12px; font-size:12px; }
-.gallery-item figcaption .gallery-team { font-size:14px; line-height:1.6; letter-spacing:0; }
-.gallery-item figcaption .gallery-quote { font-size:16px; font-family:var(--heading); line-height:1.5; letter-spacing:-.02em; color:#d3d7cf; margin-top:12px; }
 @media(max-width:1100px) {
   .split-story { column-gap:40px; }
   .split-story h2 { font-size:43px; }
@@ -480,15 +430,6 @@ main:focus { outline:none; }
   .chapter-photo .photo-thought { font-size:32px; margin-top:16px; }
   .chapter-photo .photo-kicker { max-width:none; font-size:32px; }
   .chapter-caption-note { display:none; }
-  .photo-gallery { grid-template-columns:1fr; gap:38px; }
-  .gallery-item .portrait-photo,.gallery-item:first-child .portrait-photo { aspect-ratio:2/3; }
-  .gallery-item:first-child img { object-position:center; }
-  .gallery-item .ice-photo { aspect-ratio:4/3; }
-  .photo-gallery .photo-center-label>span:not(.crosshair) { font-size:24px; }
-  .photo-gallery .photo-center-label>small { max-width:none; }
-  .gallery-item h3 { font-size:25px; }
-  .gallery-item figcaption .gallery-quote { font-size:16px; }
-  .gallery-item figcaption p { font-size:14px; }
 }
 @media(min-width:601px) and (max-width:1100px) {
   .hero h1 { font-size:clamp(56px,8vw,82px); }
@@ -523,8 +464,6 @@ main:focus { outline:none; }
 .moment-age { top:24px; left:28px; }
 .moment-action .moment-age,.moment-study .moment-age { top:16px; left:auto; right:26px; transform:rotate(5deg); }
 .moment-training .moment-age { top:auto; left:auto; bottom:28px; right:26px; transform:rotate(-5deg); }
-.photo-gallery .photo-age { left:24px; top:46px; }
-.memory-photo .photo-age { top:16px; }
 .moment-study .moment-image>img { object-position:50% 35%; }
 .moment-training .moment-image>img { object-position:50% 30%; }
 .moment-training .moment-copy { top:28px; bottom:auto; left:auto; right:28px; width:43%; text-align:right; }
@@ -558,7 +497,6 @@ main:focus { outline:none; }
   .moment-age { top:18px; left:20px; }
   .moment-action .moment-age,.moment-study .moment-age { top:10px; right:20px; }
   .moment-training .moment-age { right:20px; bottom:20px; }
-  .photo-gallery .photo-age { font-size:36px; }
   .moment-training .moment-copy { top:50px; right:20px; width:45%; }
   .moment-training .moment-quote { font-size:clamp(23px,6.3vw,32px); }
   .moment-training .moment-note { margin-top:10px; }
@@ -586,4 +524,49 @@ main:focus { outline:none; }
 }
 @media(prefers-reduced-motion:reduce) {
   .contact-links a,.contact-icon { transition:none; }
+}
+
+/* Equal-height photographs and compact captions keep each chapter together. */
+#hockey { padding-block:100px; }
+#hockey .section-heading { gap:40px; margin-bottom:28px; }
+#hockey .section-heading .eyebrow { margin-bottom:10px; }
+#hockey h2 { font-size:clamp(36px,3.8vw,52px); }
+#hockey .section-description { max-width:420px; line-height:1.5; }
+.photo-gallery { --hockey-photo-height:clamp(210px,calc(100svh - 360px),420px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.gallery-item { min-width:0; }
+.portrait-photo { width:100%; aspect-ratio:4/5; max-height:var(--hockey-photo-height); background:#161b1e; }
+.childhood-photo>img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; }
+/* The original portrait and its small restored corner scale together. */
+.hockey-portrait-frame { position:absolute; left:50%; top:0; width:auto; height:100%; aspect-ratio:2/3; transform:translateX(-50%); overflow:hidden; background:#dae0df; }
+.memory-photo img { width:100%; height:auto; max-width:none; object-fit:initial; transform:translateY(-15.32%); filter:none; }
+.memory-photo .portrait-repair { height:100%; object-fit:cover; transform:none; }
+.ice-photo>img { position:absolute; inset:0; object-position:center; filter:brightness(.85); }
+.photo-gallery .photo-age { left:18px; top:20px; font-size:clamp(26px,2.6vw,34px); transform:rotate(-6deg); transform-origin:left center; }
+.photo-gallery .photo-center-label { padding:56px 16px 20px; text-align:center; }
+.photo-gallery .photo-center-label .crosshair { margin-bottom:16px; }
+.photo-gallery .photo-center-label>span:not(.crosshair) { font-size:20px; }
+.photo-gallery .photo-center-label>small { margin-top:6px; font-size:12px; line-height:1.4; }
+.gallery-item figcaption { margin-top:12px; }
+.gallery-item h3 { font-size:clamp(17px,1.75vw,22px); line-height:1.15; }
+.gallery-item figcaption p { margin:5px 0 0; font-size:14px; line-height:1.35; letter-spacing:0; color:var(--subtle); }
+.gallery-item figcaption .gallery-chapter { margin:0 0 6px; font-size:12px; line-height:1.3; }
+.gallery-item figcaption .gallery-quote { margin-top:6px; color:#d3d7cf; letter-spacing:-.01em; }
+.hockey-bottom { display:flex; align-items:center; flex-wrap:wrap; gap:8px 24px; margin-top:24px; padding-top:12px; border-top:1px solid var(--border); }
+.hockey-bottom p { font-size:12px; color:var(--muted); }
+.hockey-bottom>a { margin-left:auto; }
+@media(min-width:760px) and (max-width:1000px) {
+  .photo-gallery { gap:16px; }
+  #hockey .section-heading { gap:28px; }
+  #hockey .section-description { max-width:320px; }
+  .photo-gallery .photo-age { left:12px; top:18px; font-size:26px; }
+}
+@media(max-width:759px) {
+  #hockey { padding-block:80px; }
+  #hockey .section-heading { flex-direction:column; align-items:flex-start; gap:16px; margin-bottom:24px; }
+  #hockey .section-description { max-width:440px; }
+  .photo-gallery { --hockey-photo-height:clamp(210px,calc(100svh - 270px),400px); grid-template-columns:1fr; gap:28px; }
+  .gallery-item { width:100%; max-width:440px; margin-inline:auto; }
+  .gallery-item h3 { font-size:22px; }
+  .photo-gallery .photo-age { left:18px; top:20px; font-size:30px; }
+  .hockey-bottom { align-items:baseline; }
 }
