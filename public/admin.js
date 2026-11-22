@@ -21,8 +21,11 @@ function resetEditor() {
   document.querySelector("#editor-title").textContent = "Add an achievement";
   document.querySelector("#cancel-edit").hidden = true;
   document.querySelector("#existing-file").hidden = true;
+  document.querySelector("#existing-preview").hidden = true;
   document.querySelector("#selected-file").textContent = "";
+  document.querySelector("#selected-preview").textContent = "";
   field("file").setCustomValidity("");
+  field("preview").setCustomValidity("");
   status(formStatus, "");
 }
 function edit(record) {
@@ -35,6 +38,11 @@ function edit(record) {
     const link = document.querySelector("#existing-file-link");
     link.href = record.file.url; link.textContent = record.file.name + " ↗";
     document.querySelector("#existing-file").hidden = false;
+  }
+  if (record.preview) {
+    const link = document.querySelector("#existing-preview-link");
+    link.href = record.preview.url; link.textContent = record.preview.name;
+    document.querySelector("#existing-preview").hidden = false;
   }
   field("title").focus();
 }
@@ -78,13 +86,15 @@ form.addEventListener("submit", async event => {
   finally { saveButton.disabled = false; }
 });
 document.querySelector("#cancel-edit").addEventListener("click", resetEditor);
-field("file").addEventListener("change", () => {
-  const file = field("file").files[0];
-  const tooLarge = file?.size > 10 * 1024 * 1024;
-  field("file").setCustomValidity(tooLarge ? "Choose a file smaller than 10 MB." : "");
-  document.querySelector("#selected-file").textContent = file ? file.name + " · " + (file.size / 1024 / 1024).toFixed(2) + " MB" : "";
-  if (tooLarge) field("file").reportValidity();
-});
+for (const [name, limit] of [["file", 10], ["preview", 2]]) {
+  field(name).addEventListener("change", () => {
+    const file = field(name).files[0];
+    const tooLarge = file?.size > limit * 1024 * 1024;
+    field(name).setCustomValidity(tooLarge ? `Choose a file smaller than ${limit} MB.` : "");
+    document.querySelector("#selected-" + name).textContent = file ? file.name + " · " + (file.size / 1024 / 1024).toFixed(2) + " MB" : "";
+    if (tooLarge) field(name).reportValidity();
+  });
+}
 document.querySelector("#confirm-delete").addEventListener("click", async () => {
   if (!pendingDelete) return;
   const button = document.querySelector("#confirm-delete"); button.disabled = true;

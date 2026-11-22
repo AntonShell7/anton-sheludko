@@ -67,3 +67,29 @@ if ('IntersectionObserver' in window) {
   }, { threshold:0.08 });
   document.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
 }
+
+const certificateDialog = document.querySelector('#certificate-dialog');
+let documentTrigger;
+document.querySelector('#achievements-content').addEventListener('click', event => {
+  const link = event.target.closest('a[data-certificate-preview]');
+  if (!link || typeof certificateDialog.showModal !== 'function' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  documentTrigger = link;
+  document.querySelector('#certificate-dialog-title').textContent = link.dataset.documentTitle;
+  const image = document.querySelector('#certificate-dialog-image');
+  image.src = link.dataset.certificatePreview;
+  image.alt = link.dataset.documentTitle + ' — full document preview';
+  document.querySelector('#certificate-download').href = link.href;
+  certificateDialog.showModal();
+  document.body.classList.add('document-open');
+});
+certificateDialog.addEventListener('close', () => {
+  document.body.classList.remove('document-open');
+  document.querySelector('#certificate-dialog-image').removeAttribute('src');
+  documentTrigger?.focus({ preventScroll:true });
+});
+certificateDialog.addEventListener('click', event => {
+  if (event.target !== certificateDialog) return;
+  const bounds = certificateDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) certificateDialog.close();
+});

@@ -115,9 +115,8 @@
           <figcaption><p class="gallery-chapter">The next chapter</p><h3>HC Admiral</h3><p class="gallery-team">Vladivostok · Sports school</p><p class="gallery-quote">“If I play, I play to win”</p></figcaption>
         </figure>
         <figure class="gallery-item" data-reveal>
-          <div class="photo-slot portrait-photo ice-photo" data-photo-slot="team">
-            <img src="/images/ice-placeholder.svg" width="1200" height="860" loading="lazy" alt="Placeholder for Anton’s photograph with ITMO University’s Kronverkskie Barsy at age 17.">
-            <div class="photo-center-label" aria-hidden="true"><span class="crosshair"></span><span>On the ice</span><small>Photograph to follow</small></div>
+          <div class="photo-slot portrait-photo team-photo" data-photo-slot="team">
+            <img src="/images/anton-itmo-hockey.jpg" width="1549" height="1800" loading="lazy" decoding="async" alt="Anton, age 17, skating in a white and blue Kronverkskie Barsy jersey during a hockey game.">
             <span class="photo-age"><strong>17</strong> years old</span>
           </div>
           <figcaption><p class="gallery-chapter">Today</p><h3>Kronverkskie Barsy</h3><p class="gallery-team">ITMO University · Saint Petersburg</p><p class="gallery-quote">New team. Same drive.</p></figcaption>
@@ -162,7 +161,7 @@
     </div></section>
 
     <section class="section section-deep awards-section" id="achievements" aria-labelledby="awards-title"><div class="container">
-      <div class="section-heading" data-reveal><div><p class="eyebrow">Recognition / 04</p><h2 id="awards-title">Awards &amp;<br>certificates</h2></div><p class="section-description">A place for the milestones and the documents behind them. This collection will grow as I add my certificates and photographs.</p></div>
+      <div class="section-heading" data-reveal><div><p class="eyebrow">Recognition / 04</p><h2 id="awards-title">Awards &amp;<br>certificates</h2></div><p class="section-description">Milestones in programming, data analysis, chess, and hockey. A few results of showing up, staying curious, and putting in the work.</p></div>
       <div id="achievements-content" data-reveal>
         <!-- ACHIEVEMENTS_START -->
         <div class="archive-intro"><p class="eyebrow">Collection in progress</p><p class="empty-note">Achievements and certificates will be added here.</p></div>
@@ -201,6 +200,11 @@
       </div>
     </section>
   </main>
+  <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">
+    <div class="certificate-dialog-header"><h2 id="certificate-dialog-title">Certificate</h2><form method="dialog"><button class="certificate-close" aria-label="Close document" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></form></div>
+    <div class="certificate-viewer"><img id="certificate-dialog-image" alt=""></div>
+    <div class="certificate-dialog-footer"><span>Document preview</span><a id="certificate-download" download>Download document</a></div>
+  </dialog>
   <footer class="site-footer"><div class="container">
     <div class="footer-signoff">
       <a class="footer-name" href="#top" aria-label="Anton Sheludko, return to the top">Anton<br>Sheludko</a>

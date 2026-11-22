@@ -543,6 +543,7 @@ main:focus { outline:none; }
 .memory-photo img { width:100%; height:auto; max-width:none; object-fit:initial; transform:translateY(-15.32%); filter:none; }
 .memory-photo .portrait-repair { height:100%; object-fit:cover; transform:none; }
 .ice-photo>img { position:absolute; inset:0; object-position:center; filter:brightness(.85); }
+.team-photo>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:42% center; filter:none; }
 .photo-gallery .photo-age { left:18px; top:20px; font-size:clamp(26px,2.6vw,34px); transform:rotate(-6deg); transform-origin:left center; }
 .photo-gallery .photo-center-label { padding:56px 16px 20px; text-align:center; }
 .photo-gallery .photo-center-label .crosshair { margin-bottom:16px; }
@@ -577,3 +578,49 @@ main:focus { outline:none; }
   .gallery-item h3 { font-size:22px; }
   .photo-gallery .photo-age { left:18px; top:20px; font-size:30px; }
 }
+
+/* Real documents keep their full proportions, with a larger view on demand. */
+.awards-section .section-heading { margin-bottom:48px; }
+.award-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:44px 28px; margin-top:0; }
+.award-card { min-width:0; }
+.award-preview { position:relative; display:grid; place-items:center; aspect-ratio:4/3; padding:22px; overflow:hidden; background:#252c2f; border:1px solid #3d4548; border-radius:4px; }
+.award-preview img { width:100%; height:100%; min-height:0; object-fit:contain; filter:drop-shadow(0 8px 10px #0005); transition:transform .25s ease; }
+.award-preview:hover img,.award-preview:focus-visible img { transform:scale(1.025); }
+.award-preview-hint { position:absolute; right:12px; bottom:12px; padding:5px 10px; border:1px solid #ffffff24; border-radius:4px; color:#fff; background:#151b21e8; font-size:12px; line-height:1.5; }
+.document-fallback { color:var(--muted); font-size:20px; }
+.award-copy { padding-top:18px; }
+.award-meta { display:flex; justify-content:space-between; gap:16px; color:var(--pink); font-size:12px; line-height:1.5; }
+.award-copy h3 { margin-top:10px; font-size:clamp(20px,1.9vw,25px); line-height:1.2; letter-spacing:-.025em; }
+.award-copy .award-organizer { margin-top:9px; color:var(--muted); font-size:14px; line-height:1.5; }
+.award-copy .achievement-description { margin-top:12px; color:#d5d8d0; font-size:16px; line-height:1.6; }
+.award-copy .achievement-files { gap:12px 24px; margin-top:10px; }
+.award-copy .achievement-file { font-size:14px; }
+.document-open { overflow:hidden; }
+.certificate-dialog { width:min(1100px,calc(100% - 32px)); height:min(94svh,1000px); max-width:none; max-height:94svh; margin:auto; padding:0; overflow:hidden; color:var(--text); background:var(--deep); border:1px solid var(--border); border-radius:10px; box-shadow:0 25px 100px #0008; }
+.certificate-dialog[open] { display:grid; grid-template-rows:auto minmax(0,1fr) auto; }
+.certificate-dialog::backdrop { background:#080c10dd; backdrop-filter:blur(8px); }
+.certificate-dialog-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:16px 20px; border-bottom:1px solid var(--border); }
+.certificate-dialog-header h2 { font-size:20px; line-height:1.3; letter-spacing:-.02em; }
+.certificate-dialog-header form { flex-shrink:0; }
+.certificate-close { display:grid; place-items:center; width:44px; height:44px; padding:10px; border:1px solid var(--border); border-radius:50%; background:transparent; }
+.certificate-close:hover { background:#ffffff12; }
+.certificate-close svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; }
+.certificate-viewer { display:grid; place-items:center; min-height:0; padding:16px; background:#101619; }
+.certificate-viewer img { width:100%; height:100%; min-height:0; object-fit:contain; }
+.certificate-dialog-footer { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 20px; font-size:14px; color:var(--muted); }
+.certificate-dialog-footer a { display:flex; align-items:center; min-height:44px; color:var(--pink); }
+.certificate-dialog-footer a:hover { text-decoration:underline; text-underline-offset:4px; }
+@media(max-width:1000px) {
+  .award-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:36px 24px; }
+}
+@media(max-width:600px) {
+  .awards-section .section-heading { margin-bottom:32px; }
+  .award-grid { grid-template-columns:1fr; gap:36px; }
+  .award-copy h3 { font-size:23px; }
+  .certificate-dialog { width:calc(100% - 16px); }
+  .certificate-dialog-header { padding:10px 12px; gap:12px; }
+  .certificate-dialog-header h2 { font-size:17px; }
+  .certificate-viewer { padding:8px; }
+  .certificate-dialog-footer { padding-inline:12px; }
+}
+@media(prefers-reduced-motion:reduce) { .award-preview img { transition:none; } }

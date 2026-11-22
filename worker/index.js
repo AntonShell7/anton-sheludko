@@ -3,7 +3,8 @@ import { ASSETS } from "./assets.js";
 const RECORD_PREFIX = "achievements/records/";
 const FILE_PREFIX = "achievements/files/";
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
-const MAX_REQUEST_BYTES = MAX_FILE_BYTES + 64 * 1024;
+const MAX_PREVIEW_BYTES = 2 * 1024 * 1024;
+const MAX_REQUEST_BYTES = MAX_FILE_BYTES + MAX_PREVIEW_BYTES + 64 * 1024;
 const CATEGORIES = new Set(["Award", "Olympiad", "Competition", "Certificate", "Other"]);
 
 class HttpError extends Error {
@@ -59,16 +60,22 @@ async function readRecords(env) {
 function publicRecord(record) {
   const { id, title, year, category, organizer, description, proofUrl, published, createdAt, updatedAt } = record;
   return { id, title, year, category, organizer, description, proofUrl, published, createdAt, updatedAt,
-    file: record.file ? { name: record.file.name, type: record.file.type, size: record.file.size, url: "/files/" + id } : null
+    file: record.file ? { name: record.file.name, type: record.file.type, size: record.file.size, url: "/files/" + id } : null,
+    preview: record.preview ? { name: record.preview.name, type: record.preview.type, size: record.preview.size, url: "/previews/" + id } : null
   };
 }
 function renderAchievements(records) {
   // Keep the clearly labelled empty document collection from the page template.
   if (!records.length) return null;
-  return '<ol class="milestone-list">' + records.map(record => {
-    const file = record.file ? `<a class="achievement-file" href="/files/${record.id}" target="_blank" rel="noopener noreferrer">${record.file.type === "application/pdf" ? "Download certificate (PDF)" : "View certificate"} <span aria-hidden="true">↗</span></a>` : "";
-    const proof = record.proofUrl ? `<a class="achievement-file" href="${escapeHTML(record.proofUrl)}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>` : "";
-    return `<li><span class="timeline-year">${record.year}</span><div><h3>${escapeHTML(record.title)}</h3><span class="entry-note">${escapeHTML(record.category)}${record.organizer ? " · " + escapeHTML(record.organizer) : ""}</span>${record.description ? `<p class="achievement-description">${escapeHTML(record.description)}</p>` : ""}<div class="achievement-files">${file}${proof}</div></div></li>`;
+  return '<ol class="certificate-grid award-grid" aria-label="Awards and certificates">' + records.map(record => {
+    const title = escapeHTML(record.title);
+    const previewUrl = record.preview ? `/previews/${record.id}` : record.file?.type.startsWith("image/") ? `/files/${record.id}` : "";
+    const previewAttributes = previewUrl ? ` data-certificate-preview="${previewUrl}" data-document-title="${title}"` : "";
+    const image = previewUrl ? `<img src="${previewUrl}" loading="lazy" decoding="async" alt="Preview of ${title}">` : '<span class="document-fallback">Certificate</span>';
+    const preview = record.file ? `<a class="award-preview" href="/files/${record.id}"${previewAttributes} aria-label="View ${title}">${image}<span class="award-preview-hint">View document</span></a>` : `<div class="award-preview">${image}</div>`;
+    const file = record.file ? `<a class="achievement-file" href="/files/${record.id}"${previewAttributes}>${previewUrl ? "View document" : "Download document"}<span class="sr-only">: ${title}</span></a>` : "";
+    const proof = record.proofUrl ? `<a class="achievement-file" href="${escapeHTML(record.proofUrl)}" target="_blank" rel="noopener noreferrer">Official source<span class="sr-only"> (opens in a new tab)</span></a>` : "";
+    return `<li class="award-card">${preview}<div class="award-copy"><p class="award-meta"><span>${escapeHTML(record.category)}</span><span>${record.year}</span></p><h3>${title}</h3>${record.organizer ? `<p class="award-organizer">${escapeHTML(record.organizer)}</p>` : ""}${record.description ? `<p class="achievement-description">${escapeHTML(record.description)}</p>` : ""}<div class="achievement-files">${file}${proof}</div></div></li>`;
   }).join("") + "</ol>";
 }
 async function limitedForm(request) {
@@ -140,31 +147,49 @@ async function saveAchievement(request, env, id) {
   if (existing && textField(form, "updatedAt", 50, true) !== existing.updatedAt) throw new HttpError(409, "This achievement changed in another tab. Reload it before saving.");
   const recordId = id || crypto.randomUUID();
   const now = new Date().toISOString();
-  const record = { ...fields, id: recordId, createdAt: existing?.createdAt || now, updatedAt: now, file: existing?.file || null };
+  const record = { ...fields, id: recordId, createdAt: existing?.createdAt || now, updatedAt: now, file: existing?.file || null, preview: existing?.preview || null };
   const upload = form.get("file");
-  let newKey;
-  if (upload && typeof upload !== "string" && upload.size > 0) {
-    const file = await validateFile(upload);
-    newKey = FILE_PREFIX + recordId + "/" + crypto.randomUUID();
-    await bucket(env).put(newKey, file.bytes, { httpMetadata: { contentType: file.type } });
-    record.file = { key: newKey, name: file.name, type: file.type, size: file.size };
-  } else if (form.get("removeFile") === "on") record.file = null;
-  try { await bucket(env).put(RECORD_PREFIX + recordId + ".json", JSON.stringify(record), { httpMetadata: { contentType: "application/json" } }); }
-  catch (error) { if (newKey) await bucket(env).delete(newKey); throw error; }
-  if (existing?.file && existing.file.key !== record.file?.key) {
-    // The saved record already references the new file. An old orphan must not undo the save.
-    try { await bucket(env).delete(existing.file.key); } catch { console.warn("Old attachment cleanup failed."); }
+  const previewUpload = form.get("preview");
+  const file = upload && typeof upload !== "string" && upload.size > 0 ? await validateFile(upload) : null;
+  let preview = null;
+  if (previewUpload && typeof previewUpload !== "string" && previewUpload.size > 0) {
+    if (previewUpload.size > MAX_PREVIEW_BYTES) throw new HttpError(413, "Choose a preview image smaller than 2 MB.");
+    preview = await validateFile(previewUpload);
+    if (!preview.type.startsWith("image/")) throw new HttpError(415, "The document preview must be a JPG, PNG, or WebP image.");
   }
+  // A replacement document must never retain the previous document's preview.
+  if (file || form.get("removeFile") === "on") record.preview = null;
+  if (!file && form.get("removeFile") === "on") record.file = null;
+  if (form.get("removePreview") === "on") record.preview = null;
+  if (preview && !file && !record.file) throw new HttpError(400, "Add a document before adding its preview.");
+  const newKeys = [];
+  try {
+    for (const [field, attachment] of [["file", file], ["preview", preview]]) {
+      if (!attachment) continue;
+      const key = FILE_PREFIX + recordId + "/" + crypto.randomUUID();
+      newKeys.push(key);
+      await bucket(env).put(key, attachment.bytes, { httpMetadata: { contentType: attachment.type } });
+      record[field] = { key, name: attachment.name, type: attachment.type, size: attachment.size };
+    }
+    await bucket(env).put(RECORD_PREFIX + recordId + ".json", JSON.stringify(record), { httpMetadata: { contentType: "application/json" } });
+  } catch (error) {
+    try { if (newKeys.length) await bucket(env).delete(newKeys); } catch { console.warn("Failed upload cleanup failed."); }
+    throw error;
+  }
+  const oldKeys = ["file", "preview"].filter(field => existing?.[field] && existing[field].key !== record[field]?.key).map(field => existing[field].key);
+  // The new record is saved; orphan cleanup must not undo a successful edit.
+  try { if (oldKeys.length) await bucket(env).delete(oldKeys); } catch { console.warn("Old attachment cleanup failed."); }
   return json({ achievement: publicRecord(record) }, id ? 200 : 201);
 }
-async function serveFile(request, env, id) {
+async function serveFile(request, env, id, field = "file") {
   const record = await readRecord(env, id);
-  if (!record?.file || (!record.published && !isAdmin(request, env))) throw new HttpError(404, "File not found.");
-  const object = await bucket(env).get(record.file.key);
+  const attachment = record?.[field];
+  if (!attachment || (!record.published && !isAdmin(request, env))) throw new HttpError(404, "File not found.");
+  const object = await bucket(env).get(attachment.key);
   if (!object) throw new HttpError(404, "File not found.");
-  const encoded = encodeURIComponent(record.file.name).replace(/['()*]/g, char => "%" + char.charCodeAt(0).toString(16));
-  return response(object.body, 200, record.file.type, {
-    "Content-Disposition": (record.file.type === "application/pdf" ? "attachment" : "inline") + "; filename*=UTF-8''" + encoded,
+  const encoded = encodeURIComponent(attachment.name).replace(/['()*]/g, char => "%" + char.charCodeAt(0).toString(16));
+  return response(object.body, 200, attachment.type, {
+    "Content-Disposition": (attachment.type === "application/pdf" ? "attachment" : "inline") + "; filename*=UTF-8''" + encoded,
     "Content-Security-Policy": "default-src 'none'; sandbox"
   });
 }
@@ -186,6 +211,19 @@ const app = {
       const method = request.method;
       if (path === "/api/session" && method === "GET") return json({ isAdmin: isAdmin(request, env), localPreview: env.LOCAL_PREVIEW === "1" });
       if (path === "/api/achievements" && method === "GET") return json({ achievements: (await readRecords(env)).filter(record => record.published).map(publicRecord) });
+      // Temporary, narrowly scoped import for the five owner-supplied documents.
+      // Removed together with its runtime secret after the verified import.
+      if (path === "/api/import-initial-awards" && method === "POST") {
+        if (!env.PORTFOLIO_IMPORT_TOKEN || request.headers.get("authorization") !== "Bearer " + env.PORTFOLIO_IMPORT_TOKEN || !env.PORTFOLIO_IMPORT_EXPIRES_AT || Date.now() > Number(env.PORTFOLIO_IMPORT_EXPIRES_AT)) throw new HttpError(404, "Not found.");
+        requireSameOrigin(request);
+        const form = await limitedForm(request);
+        const fields = validateFields(form);
+        const allowed = { "DANO Olympiad": 2026, "C++ Programming": 2026, "Python Start": 2026, "School Chess Championship": 2026, "Far Eastern Federal District Championship": 2021 };
+        if (allowed[fields.title] !== fields.year || !fields.published || !form.get("file")?.size) throw new HttpError(400, "This import is limited to the supplied certificates.");
+        const previous = (await readRecords(env)).find(record => record.title === fields.title && record.year === fields.year);
+        if (previous) return json({ achievement: publicRecord(previous), alreadyImported: true });
+        return await saveAchievement(new Request(request.url, { method: "POST", body: form }), env);
+      }
       const adminRoute = path.match(/^\/api\/admin\/achievements(?:\/([a-f0-9-]{36}))?$/);
       if (adminRoute) {
         requireAdmin(request, env);
@@ -197,13 +235,13 @@ const app = {
         if (method === "DELETE" && id) {
           const record = await readRecord(env, id);
           if (!record) throw new HttpError(404, "This achievement no longer exists.");
-          await bucket(env).delete([RECORD_PREFIX + id + ".json", ...(record.file ? [record.file.key] : [])]);
+          await bucket(env).delete([RECORD_PREFIX + id + ".json", ...[record.file, record.preview].filter(Boolean).map(file => file.key)]);
           return json({ deleted: true });
         }
         throw new HttpError(405, "Method not allowed.");
       }
-      const fileRoute = path.match(/^\/files\/([a-f0-9-]{36})$/);
-      if (fileRoute && method === "GET") return await serveFile(request, env, fileRoute[1]);
+      const fileRoute = path.match(/^\/(files|previews)\/([a-f0-9-]{36})$/);
+      if (fileRoute && method === "GET") return await serveFile(request, env, fileRoute[2], fileRoute[1] === "previews" ? "preview" : "file");
       if ((path === "/admin" || path === "/admin/") && method === "GET") {
         if (!request.headers.get("oai-authenticated-user-id")) return Response.redirect(url.origin + "/signin-with-chatgpt?return_to=%2Fadmin", 302);
         requireAdmin(request, env);
@@ -222,7 +260,7 @@ const app = {
           : asset.body;
         return response(body, 200, asset.type);
       }
-      if (path.startsWith("/api/") || path.startsWith("/files/")) throw new HttpError(404, "Not found.");
+      if (path.startsWith("/api/") || path.startsWith("/files/") || path.startsWith("/previews/")) throw new HttpError(404, "Not found.");
       return htmlResponse('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found</title><link rel="stylesheet" href="/styles.css"><main class="container hero"><h1>Page not found.</h1><p><a href="/">Return to Anton’s portfolio →</a></p></main></html>', 404);
     } catch (error) {
       if (!(error instanceof HttpError)) console.error("Portfolio request failed.");

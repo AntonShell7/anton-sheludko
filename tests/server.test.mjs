@@ -107,6 +107,58 @@ test("invalid fields, active URLs, HTML disguised as a certificate, and oversize
   assert.equal((await env.BUCKET.list()).objects.length, 0);
 });
 
+test("document previews follow publication, persist, and cannot outlive their document", async t => {
+  const { env, directory } = await setup(t);
+  const pdf = new File(["%PDF-1.4 certificate"], "award.pdf", { type: "application/pdf" });
+  const png = new File([new Uint8Array([137,80,78,71,13,10,26,10,0])], "preview.png", { type: "image/png" });
+  const data = form({}, pdf);
+  data.set("preview", png);
+  const created = await write(env, api, "POST", data);
+  assert.equal(created.status, 201);
+  const first = (await created.json()).achievement;
+  assert.ok(first.preview.url.startsWith("/previews/"));
+  assert.equal(first.preview.key, undefined);
+  assert.equal((await call(env, first.preview.url)).status, 404);
+  assert.equal((await call(env, first.preview.url, { headers: admin })).status, 200);
+  const restarted = { ...env, BUCKET: new LocalBucket(directory) };
+  const publish = await write(restarted, api + "/" + first.id, "PUT", form({ updatedAt: first.updatedAt, published: "on" }));
+  const published = (await publish.json()).achievement;
+  assert.equal(published.preview.url, first.preview.url);
+  const image = await call(restarted, published.preview.url);
+  assert.equal(image.status, 200);
+  assert.equal(image.headers.get("content-type"), "image/png");
+  assert.match(image.headers.get("content-disposition"), /^inline;/);
+  const html = await (await call(env, "/")).text();
+  assert.ok(html.includes(`data-certificate-preview="${published.preview.url}"`));
+  assert.ok(html.includes(`href="${published.file.url}"`));
+  const replacement = await write(env, api + "/" + first.id, "PUT", form({ updatedAt: published.updatedAt }, pdf));
+  const replaced = (await replacement.json()).achievement;
+  assert.equal(replaced.preview, null);
+  assert.equal((await call(env, first.preview.url, { headers: admin })).status, 404);
+  assert.equal((await env.BUCKET.list({ prefix: "achievements/files/" })).objects.length, 1);
+  const addPreview = form({ updatedAt: replaced.updatedAt });
+  addPreview.set("preview", png);
+  assert.equal((await write(env, api + "/" + first.id, "PUT", addPreview)).status, 200);
+  assert.equal((await env.BUCKET.list({ prefix: "achievements/files/" })).objects.length, 2);
+  await write(env, api + "/" + first.id, "DELETE");
+  assert.equal((await env.BUCKET.list()).objects.length, 0);
+});
+
+test("invalid previews are rejected before storing either attachment", async t => {
+  const { env } = await setup(t);
+  const pdf = new File(["%PDF-1.4 certificate"], "award.pdf", { type: "application/pdf" });
+  const wrongType = form({}, pdf);
+  wrongType.set("preview", pdf);
+  assert.equal((await write(env, api, "POST", wrongType)).status, 415);
+  const oversized = form({}, pdf);
+  oversized.set("preview", new File([new Uint8Array(2 * 1024 * 1024 + 1)], "preview.png", { type: "image/png" }));
+  assert.equal((await write(env, api, "POST", oversized)).status, 413);
+  const orphan = form();
+  orphan.set("preview", new File([new Uint8Array([137,80,78,71,13,10,26,10,0])], "preview.png", { type: "image/png" }));
+  assert.equal((await write(env, api, "POST", orphan)).status, 400);
+  assert.equal((await env.BUCKET.list()).objects.length, 0);
+});
+
 test("storage failures are visible and do not erase the public portfolio", async () => {
   assert.equal((await call({}, "/api/achievements")).status, 503);
   const page = await call({}, "/");

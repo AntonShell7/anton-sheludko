@@ -25,7 +25,7 @@ const server = createServer(async (incoming, outgoing) => {
     let size = 0;
     for await (const chunk of incoming) {
       size += chunk.length;
-      if (size > 11 * 1024 * 1024) { outgoing.writeHead(413); outgoing.end("Request too large"); return; }
+      if (size > 13 * 1024 * 1024) { outgoing.writeHead(413); outgoing.end("Request too large"); return; }
       chunks.push(chunk);
     }
     const request = new Request(origin + incoming.url, { method: incoming.method, headers, ...(size ? { body: Buffer.concat(chunks) } : {}) });
