@@ -212,19 +212,6 @@ const app = {
       const method = request.method;
       if (path === "/api/session" && method === "GET") return json({ isAdmin: isAdmin(request, env), localPreview: env.LOCAL_PREVIEW === "1" });
       if (path === "/api/achievements" && method === "GET") return json({ achievements: (await readRecords(env)).filter(record => record.published).map(publicRecord) });
-      // Temporary, narrowly scoped import for the five owner-supplied documents.
-      // Removed together with its runtime secret after the verified import.
-      if (path === "/api/import-initial-awards" && method === "POST") {
-        if (!env.PORTFOLIO_IMPORT_TOKEN || request.headers.get("authorization") !== "Bearer " + env.PORTFOLIO_IMPORT_TOKEN || !env.PORTFOLIO_IMPORT_EXPIRES_AT || Date.now() > Number(env.PORTFOLIO_IMPORT_EXPIRES_AT)) throw new HttpError(404, "Not found.");
-        requireSameOrigin(request);
-        const form = await limitedForm(request);
-        const fields = validateFields(form);
-        const allowed = { "DANO Olympiad": 2026, "C++ Programming": 2026, "Python Start": 2026, "School Chess Championship": 2026, "Far Eastern Federal District Championship": 2021 };
-        if (allowed[fields.title] !== fields.year || !fields.published || !form.get("file")?.size) throw new HttpError(400, "This import is limited to the supplied certificates.");
-        const previous = (await readRecords(env)).find(record => record.title === fields.title && record.year === fields.year);
-        if (previous) return json({ achievement: publicRecord(previous), alreadyImported: true });
-        return await saveAchievement(new Request(request.url, { method: "POST", body: form }), env);
-      }
       const adminRoute = path.match(/^\/api\/admin\/achievements(?:\/([a-f0-9-]{36}))?$/);
       if (adminRoute) {
         requireAdmin(request, env);
