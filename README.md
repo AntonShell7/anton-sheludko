@@ -1,6 +1,6 @@
 # Anton Sheludko — Vercel portfolio
 
-Production: https://anton-sheludko37.vercel.app
+Production: https://anton-sheludko.vercel.app
 
 The portfolio retains the original design, photographs, Inter typography, signature branding and award gallery. Public visitors do not need an account.
 
