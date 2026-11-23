@@ -1,11 +1,10 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-const source = await readFile(new URL("../dist/server/index.js", import.meta.url), "utf8");
-const manifest = JSON.parse(await readFile(new URL("../dist/.openai/hosting.json", import.meta.url), "utf8"));
-const { default: worker } = await import("data:text/javascript;base64," + Buffer.from(source).toString("base64"));
+const { default: worker } = await import("../worker/index.js");
+const config = JSON.parse(await readFile(new URL("../vercel.json", import.meta.url), "utf8"));
 assert.equal(typeof worker.fetch, "function");
-assert.equal(manifest.r2, "BUCKET");
-assert.ok(manifest.project_id && !manifest.static);
+assert.equal(config.outputDirectory, "dist/static");
+assert.ok(config.functions["api/index.mjs"]);
 const emptyBucket = { list: async () => ({ objects: [], truncated: false }) };
 const page = await worker.fetch(new Request("https://portfolio.example.test/"), { BUCKET: emptyBucket });
 assert.equal(page.status, 200);
@@ -32,4 +31,4 @@ const autograph = await worker.fetch(new Request("https://portfolio.example.test
 assert.equal(autograph.status, 200);
 assert.equal(autograph.headers.get("content-type"), "image/png");
 assert.deepEqual(Buffer.from(await autograph.arrayBuffer()), await readFile(new URL("../public/images/anton-autograph.png", import.meta.url)));
-console.log("Deployable Worker validated; placeholders, local fonts, personal content, and separate admin are correct.");
+console.log("Vercel portfolio validated; local fonts, personal content, and separate admin are correct.");

@@ -8,3 +8,10 @@ work/
 !.env.example
 
 dist/
+
+# Owner credentials and local exports must never be published.
+portfolio-admin-access.txt
+*credentials*.json
+*credentials*.txt
+*.zip
+*.tar.gz
