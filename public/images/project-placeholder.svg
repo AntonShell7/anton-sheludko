@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" fill="none">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1100" y2="860" gradientUnits="userSpaceOnUse"><stop stop-color="#7f8880"/><stop offset=".55" stop-color="#45514d"/><stop offset="1" stop-color="#303a38"/></linearGradient><radialGradient id="glow"><stop stop-color="#c2c7ad" stop-opacity=".18"/><stop offset="1" stop-color="#c2c7ad" stop-opacity="0"/></radialGradient></defs>
+  <path fill="url(#bg)" d="M0 0h1200v860H0z"/><ellipse cx="220" cy="170" rx="900" ry="680" fill="url(#glow)"/>
+  <g stroke="#e9e9db" stroke-opacity=".18"><rect x="172" y="172" width="856" height="516"/><path d="M172 212h856M196 192h4m16 0h4m16 0h4M218 271h165M218 303h102M218 590h270M218 612h196"/><rect x="635" y="271" width="328" height="304"/><path d="M670 315h112m-112 22h203M670 520h255M670 542h175"/></g>
+  <text x="217" y="444" fill="#e8e8dd" fill-opacity=".52" font-family="Helvetica Neue,Arial,sans-serif" font-weight="300" font-size="74" letter-spacing="-3">eaglish.</text>
+  <path d="M103 104h25m-12-12v25M1073 744h25m-12-12v25" stroke="#dde3d4" stroke-opacity=".4"/>
+</svg>

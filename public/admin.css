@@ -1,0 +1,64 @@
+.admin-wordmark { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 400; letter-spacing: 0; }
+.admin-main { padding-top: 55px; padding-bottom: 70px; }
+.admin-heading h1 { font-size: 44px; margin-top: 16px; letter-spacing: -.045em; }
+.admin-heading > p:last-child { margin-top: 15px; max-width: 620px; font-size: 15px; color: var(--muted); }
+.admin-notice { padding: 13px 17px; margin-top: 24px; border: 1px solid #d9e2f2; background: var(--accent-soft); color: #435d86; border-radius: 6px; font-size: 12px; }
+.page-status { min-height: 20px; margin: 18px 0 14px; color: var(--muted); font-size: 13px; }
+.admin-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 35px; align-items: start; }
+.editor-card { padding: 28px; border: 1px solid var(--border); background: white; border-radius: 10px; }
+.editor-heading, .collection-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+.editor-heading { margin-bottom: 25px; }
+.admin-main h2 { font-size: 20px; margin: 0; letter-spacing: -.025em; }
+.form-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 19px; min-width: 0; }
+.form-field > label { font-size: 12px; font-weight: 550; }
+.optional { margin-left: 4px; color: var(--muted); font-weight: 400; font-size: 10px; }
+.required { color: var(--accent); }
+input:not([type="checkbox"]):not([type="hidden"]), select, textarea { width: 100%; min-height: 44px; padding: 11px 12px; border: 1px solid #dce0e5; border-radius: 5px; background: #fcfcfb; color: var(--text); font: inherit; font-size: 14px; }
+input::placeholder, textarea::placeholder { color: #7a828c; font-size: 12px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
+.form-row { display: grid; grid-template-columns: .7fr 1fr; gap: 16px; }
+.field-hint { color: var(--muted); font-size: 10px; line-height: 1.7; }
+input[type="file"] { padding: 11px; font-size: 11px; }
+input::file-selector-button { margin-right: 10px; border: 1px solid var(--border); padding: 6px 10px; border-radius: 4px; background: white; color: var(--text); cursor: pointer; }
+.selected-file { overflow-wrap: anywhere; font-size: 11px; color: var(--muted); }
+.existing-file { border-top: 1px solid var(--border); padding-top: 12px; font-size: 11px; }
+.existing-file a { color: var(--accent); display: inline-flex; min-height: 35px; align-items: center; overflow-wrap: anywhere; }
+.checkbox-label { display: flex; align-items: flex-start; gap: 9px; font-size: 12px; line-height: 1.7; }
+.checkbox-label input { width: 16px; height: 16px; margin: 3px 0 0; accent-color: var(--accent); flex-shrink: 0; }
+.publish-setting { margin-top: 24px; padding: 17px; border: 1px solid var(--border); border-radius: 6px; background: var(--background); }
+.publish-setting > p { margin: 8px 0 0 25px; color: var(--muted); font-size: 10px; }
+.form-status { min-height: 20px; margin-top: 18px; font-size: 12px; color: var(--muted); }
+.form-status.error, .page-status.error, #delete-status { color: #a23131; }
+#save-button { width: 100%; margin-top: 10px; cursor: pointer; }
+button:disabled { cursor: wait; opacity: .6; }
+.text-button { min-height: 44px; padding: 4px 0; background: none; border: 0; font-size: 11px; color: var(--accent); cursor: pointer; }
+.text-button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.collection { padding-top: 8px; }
+.collection-heading { padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.collection-count { min-width: 25px; padding: 2px 8px; border-radius: 5px; background: #eceff3; color: #606c7e; font-family: var(--mono); font-size: 11px; text-align: center; }
+.collection-empty { padding: 29px 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
+.achievement-item { padding: 22px 0 15px; border-bottom: 1px solid var(--border); }
+.achievement-item h3 { font-size: 16px; }
+.item-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-bottom: 9px; color: var(--muted); font-size: 10px; }
+.item-status { padding: 1px 7px; color: #356442; background: #eaf3ec; border-radius: 3px; }
+.item-status.draft { background: #edf0f4; color: #5e6a7a; }
+.item-description { margin-top: 9px; font-size: 12px; color: var(--muted); line-height: 1.8; white-space: pre-line; overflow-wrap: anywhere; }
+.item-attachment { display: inline-block; max-width: 100%; padding-top: 9px; color: var(--accent); overflow-wrap: anywhere; font-size: 11px; }
+.item-actions { display: flex; gap: 25px; margin-top: 6px; }
+.item-actions .delete-button { color: #8d4545; }
+dialog { max-width: min(430px, calc(100% - 32px)); padding: 27px; border: 1px solid var(--border); border-radius: 12px; color: var(--text); }
+dialog::backdrop { background: #1e273a55; }
+dialog h2 { margin: 0 0 14px; font-size: 23px; }
+dialog p { margin-top: 10px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.dialog-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.secondary-button, .danger-button { min-height: 44px; padding: 10px 14px; border-radius: 5px; font-size: 12px; cursor: pointer; }
+.secondary-button { background: white; border: 1px solid var(--border); }
+.danger-button { background: #9c3636; color: white; border: 1px solid #9c3636; }
+@media(max-width: 800px) { .admin-layout { gap: 23px; } .editor-card { padding: 22px; } }
+@media(max-width: 640px) { .admin-main { padding-top: 38px; } .admin-heading h1 { font-size: 34px; } .admin-heading > p:last-child { font-size: 14px; } .admin-layout { grid-template-columns: 1fr; gap: 38px; } .editor-card { padding: 23px 19px; } .form-row { gap: 12px; } .editor-heading { flex-wrap: wrap; gap: 0; } .admin-notice { font-size: 11px; } }
+/* Keep the separate editing screen comfortable to read with the new foundations. */
+.admin-main .form-field > label, .admin-main .checkbox-label { font-size: 14px; }
+.admin-main .optional, .admin-main .field-hint, .admin-main .publish-setting > p { font-size: 12px; }
+.admin-main .admin-notice, .admin-main .page-status, .admin-main .form-status { font-size: 13px; }
+.admin-main .text-button { font-size: 12px; }

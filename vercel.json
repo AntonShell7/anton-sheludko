@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/static",
+  "framework": null,
+  "regions": ["fra1"],
+  "functions": { "api/index.mjs": { "maxDuration": 60 } },
+  "routes": [
+    { "src": "/(.*)", "headers": { "X-Content-Type-Options": "nosniff", "Referrer-Policy": "strict-origin-when-cross-origin" }, "continue": true },
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/api/index" }
+  ]
+}

@@ -1,0 +1,17 @@
+.DS_Store
+*.log
+node_modules/
+.vercel/
+worker/assets.js
+work/
+.env*
+!.env.example
+
+dist/
+
+# Owner credentials and local exports must never be published.
+portfolio-admin-access.txt
+*credentials*.json
+*credentials*.txt
+*.zip
+*.tar.gz

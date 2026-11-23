@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="base" x1="800" y1="0" x2="800" y2="1000" gradientUnits="userSpaceOnUse"><stop stop-color="#6d7875"/><stop offset=".5" stop-color="#3c4847"/><stop offset="1" stop-color="#202729"/></linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(1210 130) rotate(115) scale(900 700)" gradientUnits="userSpaceOnUse"><stop stop-color="#d8d7c6" stop-opacity=".48"/><stop offset="1" stop-color="#9ca999" stop-opacity="0"/></radialGradient>
+    <linearGradient id="floor" x1="0" y1="560" x2="0" y2="1000" gradientUnits="userSpaceOnUse"><stop stop-color="#b9c4be" stop-opacity=".06"/><stop offset="1" stop-color="#273133" stop-opacity="0"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  </defs>
+  <path fill="url(#base)" d="M0 0h1600v1000H0z"/><path fill="url(#light)" d="M0 0h1600v1000H0z"/>
+  <g filter="url(#blur)" fill="#e6e7d7" opacity=".07"><path d="m1150-60-280 870h180L1370-60z"/><path d="m1480-60-200 870h130l210-870z"/></g>
+  <path d="M0 560h1600v440H0z" fill="url(#floor)"/>
+  <g stroke="#d7dfd5" stroke-opacity=".08"><path d="M0 568h1600M0 576h1600M1190 0v568M1470 0v568"/><ellipse cx="1220" cy="780" rx="430" ry="100"/><ellipse cx="1220" cy="780" rx="190" ry="44"/><path d="m1220 570 80 430M800 730l800-105M800 817l800 105"/></g>
+  <rect width="1600" height="1000" filter="url(#grain)" opacity=".035"/>
+</svg>
