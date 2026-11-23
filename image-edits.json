@@ -1,0 +1,16 @@
+{
+  "mode": "built-in image_gen",
+  "purpose": "Remove only the tournament overlays. The webpage retains the original photographs and displays only the restored ice regions from these edited outputs through CSS masks, preserving original faces, clothing, pose and composition.",
+  "images": [
+    {
+      "key": "actionClean",
+      "prompt": "Use case: precise-object-edit. Edit target: this real hockey action photograph. Remove ONLY the overlaid tournament badge reading КУБОК ЧЕМПИОНОВ / САНКТ-ПЕТЕРБУРГ 2025 in the bottom-left corner. Fill that small area with seamless matching pale ice texture. Absolutely preserve both players, their faces, helmets, clothing and team emblems, sticks, puck, rink lines, camera framing, lighting, sharpness and colors; do not reimagine or retouch any part outside the badge. Keep the complete original landscape photograph, same 1170:777 composition (approximately 3:2). No added text. This is a narrow logo removal, not a recreation.",
+      "output": "public/images/anton-hockey-action-clean.jpg"
+    },
+    {
+      "key": "portraitClean",
+      "prompt": "Use case: precise-object-edit, identity-preserve. Edit target: the real hockey portrait inside this screenshot. Remove the overlaid tournament badge reading КУБОК ЧЕМПИОНОВ / САНКТ-ПЕТЕРБУРГ 2025 at the lower left of the photographic area, reconstruct only the pale ice behind that badge. Crop away only the black UI bands and VK badge outside the photograph; return the entire clean photographic rectangle as a 2:3 vertical photograph. Preserve the photographed person EXACTLY: same face, hair, gaze, expression, proportions, body pose, hands, white jersey, number 37, ALL emblems printed on clothing, gloves, stick and helmet. Preserve framing of the actual photo, original lighting, colors and texture. Do not retouch skin, change facial features, invent missing body parts, or crop the original photographic area. Only remove the corner tournament overlay and screenshot UI framing. No added typography.",
+      "output": "public/images/anton-hockey-portrait-clean.jpg"
+    }
+  ]
+}

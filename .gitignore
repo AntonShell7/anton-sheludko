@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+node_modules/
+.vercel/
+worker/assets.js
+work/
+.env*
+!.env.example
+
+dist/

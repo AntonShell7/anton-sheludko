@@ -1,0 +1,25 @@
+@font-face { font-family:Inter; src:url('/fonts/inter-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
+/* The owner’s editing screen is separate from the public portfolio design. */
+:root { --background:#f8f9fb; --text:#1c2029; --muted:#616873; --border:#dfe3e9; --accent:#345cdb; --accent-soft:#eaf0ff; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--background); color:var(--text); font:16px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-optical-sizing:auto; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,p { margin:0; }
+h1,h2,h3 { line-height:1.15; font-weight:600; }
+a { color:inherit; text-decoration:none; }
+button,input,select,textarea { font:inherit; }
+button { color:inherit; }
+[hidden] { display:none!important; }
+a:focus-visible,button:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+.container { width:min(1120px,calc(100% - 64px)); margin-inline:auto; }
+.site-header { background:var(--background); border-bottom:1px solid var(--border); }
+.header-inner { display:flex; justify-content:space-between; align-items:center; min-height:76px; gap:20px; }
+.wordmark { font-size:25px; font-weight:700; letter-spacing:-.055em; }
+.wordmark-dot { color:var(--accent); }
+.quiet-link { display:inline-flex; align-items:center; min-height:44px; gap:12px; font-size:14px; }
+.eyebrow { text-transform:uppercase; color:var(--muted); font-size:11px; letter-spacing:.1em; }
+.button { display:inline-flex; align-items:center; justify-content:center; gap:20px; min-height:48px; padding:12px 22px; border:1px solid var(--accent); border-radius:6px; background:var(--accent); color:#fff; font-size:14px; }
+.button:hover { background:#254bbb; }
+.site-footer { display:flex; justify-content:space-between; gap:20px; padding-block:28px; border-top:1px solid var(--border); color:var(--muted); font-size:12px; }
+.skip-link { position:fixed; top:-80px; left:15px; padding:12px 20px; background:#1c2029; color:white; z-index:100; }
+.skip-link:focus { top:8px; }
+@media(max-width:640px) { .container { width:calc(100% - 40px); } .header-inner { min-height:66px; } .quiet-link { font-size:12px; } .site-footer { flex-wrap:wrap; } }
