@@ -6,6 +6,15 @@ const assetFiles = {
   "/styles.css": ["styles.css", "text/css; charset=utf-8"],
   "/script.js": ["script.js", "text/javascript; charset=utf-8"],
   "/favicon.svg": ["favicon.svg", "image/svg+xml"],
+  "/favicon.ico": ["favicon.ico", "image/x-icon", "base64"],
+  "/favicon-16.png": ["favicon-16.png", "image/png", "base64"],
+  "/favicon-32.png": ["favicon-32.png", "image/png", "base64"],
+  "/apple-touch-icon.png": ["apple-touch-icon.png", "image/png", "base64"],
+  "/apple-touch-icon-precomposed.png": ["apple-touch-icon.png", "image/png", "base64"],
+  "/icon-192.png": ["icon-192.png", "image/png", "base64"],
+  "/icon-512.png": ["icon-512.png", "image/png", "base64"],
+  "/site.webmanifest": ["site.webmanifest", "application/manifest+json; charset=utf-8"],
+  "/images/anton-social-cover.jpg": ["images/anton-social-cover.jpg", "image/jpeg", "base64"],
   "/admin": ["admin.html", "text/html; charset=utf-8"],
   "/admin.css": ["admin.css", "text/css; charset=utf-8"],
   "/admin-base.css": ["admin-base.css", "text/css; charset=utf-8"],
@@ -36,9 +45,9 @@ for (const [route, [file, type, encoding = "utf8"]] of Object.entries(assetFiles
   const contents = await readFile(new URL("../public/" + file, import.meta.url));
   assets[route] = { body: contents.toString(encoding), type, encoding };
 }
-// Give changed styles and scripts a new URL so existing previews load the current version.
+// Fingerprint icons too: browsers often keep tab icons independently of page caching.
 for (const route of ["/", "/admin"]) {
-  assets[route].body = assets[route].body.replace(/(href|src)="(\/[^"?]+\.(?:css|js))"/g, (match, attribute, path) => {
+  assets[route].body = assets[route].body.replace(/(href|src)="(\/[^"?]+\.(?:css|js|svg|png|ico|webmanifest))"/g, (match, attribute, path) => {
     if (!assets[path]) return match;
     const revision = createHash("sha256").update(assets[path].body).digest("hex").slice(0, 12);
     return `${attribute}="${path}?v=${revision}"`;
